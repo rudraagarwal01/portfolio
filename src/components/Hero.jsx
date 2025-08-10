@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaAws } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
 
 export default function Hero() {
@@ -78,6 +78,22 @@ export default function Hero() {
           aria-label="LinkedIn"
         >
           <FaLinkedin />
+        </a>
+        <a
+          href="https://www.credly.com/badges/1239a737-51c7-46bf-aa56-eed2c2a0ebb2/public_url"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="AWS Certification"
+          title="AWS Certified Cloud Practitioner"
+          className="flex items-center justify-center rounded-full bg-white text-black hover:bg-cyan-500 hover:text-white transition-colors"
+          style={{
+            width: "32px",
+            height: "32px",
+            fontSize: "24px",
+            lineHeight: 1,
+          }}
+        >
+          <FaAws />
         </a>
       </motion.div>
 

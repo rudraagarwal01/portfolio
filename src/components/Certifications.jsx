@@ -4,9 +4,15 @@ import { BadgeCheck } from "lucide-react";
 const certifications = [
   {
     name: "AWS Certified Cloud Practitioner",
-    date: "Projected July 2025",
+    date: "Completeed August 2025",
     issuer: "Amazon Web Services",
     credentialUrl: "https://www.credly.com/badges/1239a737-51c7-46bf-aa56-eed2c2a0ebb2/public_url"
+  },
+  {
+    name: "Electronic Arts - Software Engineering Job Simulation",
+    date: "Completed January 2025",
+    issuer: "Forage",
+    credentialUrl: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/j43dGscQHtJJ57N54/a77WE3de8qrxWferQ_j43dGscQHtJJ57N54_MkGzM7E3fgrPsBR7b_1737178148243_completion_certificate.pdf"
   }
 ];
 
