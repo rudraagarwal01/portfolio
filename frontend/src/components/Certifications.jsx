@@ -6,7 +6,7 @@ const certifications = [
     name: "AWS Certified Cloud Practitioner",
     date: "Projected July 2025",
     issuer: "Amazon Web Services",
-    credentialUrl: "https://aws.amazon.com/certification/certified-cloud-practitioner/"
+    credentialUrl: "https://www.credly.com/badges/1239a737-51c7-46bf-aa56-eed2c2a0ebb2/public_url"
   }
 ];
 
