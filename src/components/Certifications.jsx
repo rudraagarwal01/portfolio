@@ -24,10 +24,10 @@ export default function Certifications() {
       id="certifications"
       className="relative py-24 px-6 md:px-16 max-w-5xl mx-auto z-10"
     >
-      {/* Section Title */}
+      {/* Section Title - Updated to Blue */}
       <motion.h2
-        className="text-4xl md:text-5xl font-extrabold text-[#0ff] mb-16 text-center tracking-tight"
-        style={{ textShadow: "0 0 10px rgba(0,255,255,0.4)" }}
+        className="text-4xl md:text-5xl font-extrabold text-blue-500 mb-16 text-center tracking-tight"
+        style={{ textShadow: "0 0 15px rgba(59, 130, 246, 0.4)" }}
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -54,16 +54,16 @@ export default function Certifications() {
             className="
                 group relative cursor-pointer rounded-2xl
                 glass-card p-6 md:p-8
-                border border-cyan-700/50
-                hover:shadow-[0_0_35px_rgba(0,255,255,0.35)]
+                border border-blue-900/40
+                hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]
                 transition-all duration-300
               "
           >
-            {/* Left neon accent */}
+            {/* Left blue accent */}
             <span
               className="
                   absolute left-0 top-6 bottom-6 w-[2px]
-                  bg-cyan-400/70
+                  bg-blue-500/70
                   rounded-full
                   opacity-60
                   group-hover:opacity-100
@@ -72,12 +72,12 @@ export default function Certifications() {
             />
 
             <div className="flex items-start gap-5">
-              {/* Icon */}
+              {/* Icon - Updated to Blue */}
               <BadgeCheck
                 className="
-                    text-cyan-400 w-9 h-9 flex-shrink-0
+                    text-blue-400 w-9 h-9 flex-shrink-0
                     group-hover:scale-110
-                    group-hover:drop-shadow-[0_0_10px_rgba(0,255,255,0.7)]
+                    group-hover:drop-shadow-[0_0_10px_rgba(59,130,246,0.7)]
                     transition-transform duration-300
                   "
               />
@@ -90,8 +90,8 @@ export default function Certifications() {
                 <p className="text-gray-400">{issuer}</p>
                 <p className="text-sm text-gray-300 italic">{date}</p>
 
-                {/* subtle CTA */}
-                <p className="mt-2 text-sm text-cyan-400/80 opacity-0 group-hover:opacity-100 transition-opacity">
+                {/* blue CTA */}
+                <p className="mt-2 text-sm text-blue-400/90 font-medium transition-colors group-hover:text-blue-300">
                   View Credential →
                 </p>
               </div>

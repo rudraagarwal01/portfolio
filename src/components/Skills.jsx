@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion"; // Added motion import
+import { motion } from "framer-motion";
 import {
   FaHtml5, FaCss3Alt, FaJs, FaPython, FaReact, FaGitAlt, FaGithub, FaNodeJs, FaAws, FaSwift, FaJava, FaCloud
 } from "react-icons/fa";
@@ -20,8 +20,8 @@ const skillsCategories = [
   {
     label: "Frameworks & Libraries",
     skills: [
-      { name: "React", icon: <FaReact className="text-cyan-400" /> },
-      { name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-400" /> },
+      { name: "React", icon: <FaReact className="text-blue-400" /> },
+      { name: "Tailwind CSS", icon: <SiTailwindcss className="text-blue-400" /> },
       { name: "Flask", icon: <SiFlask className="text-white" /> },
       { name: "Firebase", icon: <SiFirebase className="text-yellow-400" /> },
       { name: "PyTorch", icon: <SiPytorch className="text-red-600" /> },
@@ -55,10 +55,9 @@ const skillsCategories = [
 export default function Skills() {
   return (
     <section className="py-24 px-6 md:px-20 max-w-7xl mx-auto">
-      {/* Uniform Title Styling */}
       <motion.h2
-        className="text-4xl md:text-5xl font-extrabold text-[#0ff] mb-16 text-center tracking-tight"
-        style={{ textShadow: "0 0 10px rgba(0,255,255,0.4)" }}
+        className="text-4xl md:text-5xl font-extrabold text-blue-500 mb-16 text-center tracking-tight"
+        style={{ textShadow: "0 0 15px rgba(59, 130, 246, 0.4)" }}
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -73,7 +72,7 @@ export default function Skills() {
             key={category.label} 
             className="p-6 rounded-xl border border-white/10 bg-white/5 glass-card"
           >
-            <h3 className="text-xl font-semibold mb-6 text-cyan-300">
+            <h3 className="text-xl font-semibold mb-6 text-blue-300">
               {category.label}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
@@ -81,10 +80,10 @@ export default function Skills() {
                 <div
                   key={skill.name}
                   className="skill-card flex flex-col items-center justify-center p-4 bg-white/5 rounded-xl border border-white/10 transition-all duration-300 cursor-default
-                    hover:scale-105 hover:shadow-[inset_0_0_6px_#0ff] hover:border-[#0ff]"
+                    hover:scale-105 hover:shadow-[inset_0_0_8px_#3b82f6] hover:border-blue-500"
                 >
                   <span className="text-3xl mb-2">{skill.icon}</span>
-                  <span className="text-sm font-medium">{skill.name}</span>
+                  <span className="text-sm font-medium text-gray-200">{skill.name}</span>
                 </div>
               ))}
             </div>

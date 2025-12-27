@@ -58,46 +58,11 @@ export default function Experience() {
     },
   ];
 
-  const stars = Array.from({ length: 50 }).map((_, i) => ({
-    id: i,
-    top: Math.random() * 100,
-    left: Math.random() * 100,
-    size: Math.random() * 3 + 1,
-    duration: 20 + Math.random() * 20,
-    delay: Math.random() * 10,
-  }));
-
   return (
-    <section className="relative py-16 px-6 md:px-16 overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        {stars.map((star) => (
-          <motion.div
-            key={star.id}
-            className="absolute rounded-full bg-[#0ff] opacity-30"
-            style={{
-              width: star.size,
-              height: star.size,
-              top: `${star.top}%`,
-              left: `${star.left}%`,
-            }}
-            animate={{
-              x: [0, 20, 0, -20, 0],
-              y: [0, -10, 0, 10, 0],
-              opacity: [0.2, 0.8, 0.2],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: star.duration,
-              delay: star.delay,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
-
+    <section className="relative py-16 px-6 md:px-16 overflow-hidden bg-transparent">
       <h2
-        className="text-4xl md:text-5xl font-extrabold mb-16 text-center text-[#0ff] tracking-tight z-10 relative"
-        style={{ textShadow: "0 0 10px rgba(0,255,255,0.4)" }}
+        className="text-4xl md:text-5xl font-extrabold mb-16 text-center text-blue-500 tracking-tight z-10 relative"
+        style={{ textShadow: "0 0 15px rgba(59, 130, 246, 0.4)" }}
       >
         Experience
       </h2>
@@ -106,20 +71,24 @@ export default function Experience() {
         {jobs.map((job, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }} // Reduced Y distance for faster feel
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: idx * 0.15 }}
+            viewport={{ once: true, margin: "-50px" }} // Trigger slightly earlier
+            transition={{ duration: 0.4, delay: 0.05 }} // Much faster duration and minimal delay
             className="relative flex flex-col md:flex-row items-start group"
           >
             <motion.div
-              className="glass-card flex flex-col md:w-full p-6 border border-[#0ff] group-hover:scale-105 group-hover:shadow-[#0ff]/40 transition-transform duration-300 relative"
+              className="glass-card flex flex-col md:w-full p-6 border border-blue-500/20 group-hover:border-blue-500/50 transition-all duration-300 relative overflow-hidden"
               whileHover={{
-                scale: 1.03,
-                boxShadow: "0 12px 48px rgba(0,255,255,0.4)",
+                scale: 1.02,
+                boxShadow: "0 12px 48px rgba(59, 130, 246, 0.2)",
               }}
             >
-              <div className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-[#0ff] to-purple-500 text-white font-bold text-lg shadow-lg">
+              {/* Animated Hover Line - Bottom */}
+              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out" />
+
+              {/* Job Number Bubble */}
+              <div className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-400 via-blue-600 to-blue-800 text-white font-bold text-lg shadow-lg z-20">
                 {idx + 1}
               </div>
 
@@ -127,19 +96,22 @@ export default function Experience() {
                 <img
                   src={`/logos/${job.logo}`}
                   alt={`${job.company} logo`}
-                  className="w-10 h-10 rounded-full border border-[#0ff]"
+                  className="w-10 h-10 rounded-full border border-blue-500/30"
                 />
-                <h3 className="text-xl font-bold text-[#0ff]">{job.title}</h3>
+                <h3 className="text-xl font-bold text-blue-400">{job.title}</h3>
               </div>
+              
               <span className="text-xs text-gray-400 mb-2">{job.date}</span>
+              
               <div className="text-gray-300 font-semibold mb-2">
                 {job.company}
-                {job.location ? (
+                {job.location && (
                   <span className="text-xs text-gray-400 ml-2">
                     {job.location}
                   </span>
-                ) : null}
+                )}
               </div>
+              
               <p className="text-gray-200 mt-2 leading-relaxed">
                 {job.details}
               </p>

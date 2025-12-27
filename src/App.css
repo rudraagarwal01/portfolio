@@ -1,194 +1,117 @@
-/* ================== Base ================== */
+/* ================== Base & Layout ================== */
+:root {
+  /* Updated from Cyan to Electric Blue to match your name gradient */
+  --neon-blue: #3b82f6; 
+  --glass-white: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(59, 130, 246, 0.15); /* Tinted blue border */
+}
+
 body, html {
   margin: 0;
   padding: 0;
   font-family: 'Inter', sans-serif;
-  background-color: #000;
+  background-color: #000 !important;
   color: white;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 .gradient-bg {
-  background-color: #000;
+  background-color: transparent !important;
   min-height: 100vh;
   position: relative;
-  overflow-x: hidden;
 }
 
 /* ================== Glassmorphism ================== */
 .glass-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--glass-white);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
   border-radius: 16px;
-  padding: 1rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .glass-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 48px rgba(0, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 48px rgba(59, 130, 246, 0.25); /* Blue glow on hover */
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(59, 130, 246, 0.5); /* Stronger blue border */
 }
 
-/* ================== Tech Grid Background ================== */
+/* ================== Tech Grid ================== */
 .tech-grid {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   background-image:
-    linear-gradient(to right, rgba(0,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,255,255,0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
+    /* Updated grid lines to subtle blue */
+    linear-gradient(to right, rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
-
-/* ================== Star Background ================== */
-.hero-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  background-color: #000;
-}
-
-.hero-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  background-color: #000;
-}
-
-/* Realistic stars */
-.hero-bg .star {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff 0%, #0ff 60%);
-  opacity: 0.4;
-  pointer-events: none;
-  animation: twinkle 3s infinite alternate;
-}
-
-/* Twinkling animation */
-@keyframes twinkle {
-  0% { opacity: 0.2; transform: scale(0.5); }
-  50% { opacity: 0.8; transform: scale(1); }
-  100% { opacity: 0.2; transform: scale(0.5); }
-}
-
-/* General page styling */
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: #000;
-  color: white;
-}
-
-.gradient-bg {
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
-}
-
-.star {
-  position: absolute;
-  background: transparent;
-  pointer-events: none;
-  animation: twinkle 4s infinite ease-in-out;
-}
-
-/* Diamond star */
-.star::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: white;
-  transform: rotate(45deg);
-  border-radius: 1px;
-  opacity: 0.8;
-}
-
-/* Sparkle cross (optional variation) */
-.star.sparkle::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: white;
-  transform: rotate(90deg);
-  border-radius: 1px;
-  opacity: 0.6;
-}
-
-/* Subtle twinkle */
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0.4;
-    transform: scale(0.8) rotate(45deg);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2) rotate(45deg);
-  }
-}
-
-
-
 
 /* ================== Section Styling ================== */
 section {
   position: relative;
   z-index: 10;
   margin-bottom: 4rem;
+  background: transparent !important;
 }
 
-/* ================== Neon Headings ================== */
+/* ================== Neon Typography ================== */
 h2 {
-  color: #0ff;
-  text-shadow: 0 0 8px #0ff;
+  color: var(--neon-blue);
+  text-shadow: 0 0 15px rgba(59, 130, 246, 0.5); /* Blue text glow */
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-h3 {
-  color: #0ff;
+.text-neon {
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
 }
 
-/* ================== Buttons & Links ================== */
-.App-link {
-  color: #61dafb;
-  transition: color 0.3s;
-}
-
-.App-link:hover {
-  color: #0ff;
-}
-
-/* ================== Cards/Skill Cards ================== */
+/* ================== Cards ================== */
 .card, .skill-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--glass-white);
   border-radius: 16px;
-  border: 1px solid rgba(0,255,255,0.2);
+  border: 1px solid rgba(59, 130, 246, 0.1); /* Subtle blue border */
   padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 6px 24px rgba(0,255,255,0.1);
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
 }
 
 .card:hover, .skill-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 48px rgba(0,255,255,0.3);
-  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+  border-color: var(--neon-blue);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
 }
 
-/* ================== Neon Glow Text ================== */
-.text-neon {
-  color: #0ff;
-  text-shadow:
-    0 0 5px #0ff,
-    0 0 10px #0ff,
-    0 0 20px #0ff,
-    0 0 40px #0ff;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
 }
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b; /* Dark slate blue */
+  border-radius: 10px;
+  border: 2px solid #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-blue); /* Neon blue on scroll hover */
+}
+
+/* CLEANUP: REMOVED ALL PREVIOUS STAR/TWINKLE CSS TO STOP FLICKERING */

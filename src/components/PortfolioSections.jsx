@@ -1,32 +1,44 @@
 import React from "react"
+import About from "./About" // 1. Import the new component
 import Experience from "./Experience"
 import Leadership from "./Leadership"
 import Projects from "./Projects"
 import Skills from "./Skills"
+import Certifications from "./Certifications"
 
 export default function PortfolioSections() {
   return (
-    <div className="bg-black text-white">
+    <div className="text-white relative z-10">
       
+      {/* ABOUT - Place this first so it follows the Hero */}
+      <div id="about">
+        <About />
+      </div>
+
       {/* EXPERIENCE */}
-      <section id="experience" className="py-16 px-6 md:px-16">
+      <div id="experience">
         <Experience />
-      </section>
+      </div>
 
       {/* LEADERSHIP & COMMUNITY */}
-      <section id="leadership" className="py-16 px-6 md:px-16">
+      <div id="leadership">
         <Leadership />
-      </section>
+      </div>
 
       {/* PROJECTS */}
-      <section id="projects" className="py-16 px-6 md:px-16">
+      <div id="projects">
         <Projects />
-      </section>
+      </div>
 
       {/* SKILLS */}
-      <section id="skills" className="py-16 px-6 md:px-16">
+      <div id="skills">
         <Skills />
-      </section>
+      </div>
+
+      {/* CERTIFICATIONS */}
+      <div id="certifications">
+        <Certifications />
+      </div>
 
     </div>
   )
