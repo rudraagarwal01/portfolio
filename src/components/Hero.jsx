@@ -45,7 +45,6 @@ export default function Hero() {
     },
   };
 
-  // Updated class for buttons to match the "Explore" theme
   const socialBtnContainer = "group relative w-16 h-16 md:w-20 md:h-20 flex items-center justify-center transition-all duration-300";
 
   return (
@@ -78,22 +77,43 @@ export default function Hero() {
       >
         <motion.div variants={popIn} className="relative group">
           <ParticleBurst />
+          
+          {/* STABLE RIPPLE 1: Box-Shadow Pulse */}
           <motion.div
-            animate={{ rotate: -360 }}
-            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-            className="absolute -inset-4 border-2 border-dashed border-blue-500/60 rounded-full"
+            key="ripple-1"
+            animate={{ 
+              boxShadow: ["0 0 0 0px rgba(59, 130, 246, 0.4)", "0 0 0 40px rgba(59, 130, 246, 0)"]
+            }}
+            transition={{ 
+              duration: 2.5, 
+              repeat: Infinity, 
+              ease: "linear" 
+            }}
+            className="absolute inset-0 rounded-full pointer-events-none"
           />
+
+          {/* STABLE RIPPLE 2: Delayed Box-Shadow Pulse */}
           <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-            className="absolute -inset-8 border border-blue-400/20 rounded-full"
+            key="ripple-2"
+            animate={{ 
+              boxShadow: ["0 0 0 0px rgba(96, 165, 250, 0.4)", "0 0 0 60px rgba(96, 165, 250, 0)"]
+            }}
+            transition={{ 
+              duration: 2.5, 
+              repeat: Infinity, 
+              delay: 1.25,
+              ease: "linear" 
+            }}
+            className="absolute inset-0 rounded-full pointer-events-none"
           />
+          
           <motion.div
-            animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
+            animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
             transition={{ duration: 4, repeat: Infinity }}
             className="absolute -inset-10 bg-blue-600/20 blur-3xl rounded-full"
           />
-          <div className="relative rounded-full p-1 bg-gradient-to-tr from-blue-400 via-blue-600 to-indigo-700 shadow-[0_0_60px_rgba(59,130,246,0.5)]">
+
+          <div className="relative rounded-full p-1 bg-gradient-to-tr from-blue-400 via-blue-600 to-indigo-700 shadow-[0_0_60px_rgba(59,130,246,0.5)] transition-transform duration-500 group-hover:scale-105">
             <img
               src="/profile.png"
               alt="Rudra Agarwal"
@@ -127,7 +147,6 @@ export default function Hero() {
           />
         </motion.div>
 
-        {/* Social buttons matching Explore Button style */}
         <motion.div
           variants={popIn}
           className="flex items-center justify-center space-x-6 mt-4"
@@ -146,14 +165,10 @@ export default function Hero() {
               rel="noopener noreferrer"
               className={socialBtnContainer}
             >
-              {/* Background Glow */}
               <span className="absolute inset-0 w-full h-full bg-blue-600/10 blur-lg group-hover:bg-blue-500/30 transition-all rounded-full" />
-              {/* Border */}
               <span className="absolute inset-0 w-full h-full border border-blue-400/30 rounded-full group-hover:border-blue-400 transition-all" />
-              {/* Animated Ping Ring */}
               <span className="absolute inset-0 w-full h-full border border-blue-500 rounded-full animate-[ping_2s_linear_infinite] opacity-20 pointer-events-none" />
               
-              {/* Icon */}
               <span className="relative z-10 text-2xl md:text-3xl text-blue-400 group-hover:text-white transition-colors duration-300">
                 {item.icon}
               </span>
