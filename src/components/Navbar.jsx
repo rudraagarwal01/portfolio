@@ -1,18 +1,9 @@
 import { useState } from "react";
-import { Moon, Sun } from "lucide-react";
 
-export default function Navbar({ theme, toggleTheme }) {
+export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const ThemeToggleButton = (
-    <button
-      onClick={toggleTheme}
-      className="p-2 rounded-full bg-gray-900 text-cyan-400 hover:bg-cyan-600 hover:text-white transition-colors duration-300"
-      aria-label="Toggle theme"
-    >
-      {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-    </button>
-  );
+  const navItems = ["about",  "experience", "projects", "skills", "leadership"];
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur-md shadow-lg border-b border-gray-700">
@@ -20,7 +11,7 @@ export default function Navbar({ theme, toggleTheme }) {
         {/* Profile Section */}
         <div className="flex items-center space-x-3">
           <img
-            src="/profile.jpg"
+            src="/profile.png"
             alt="Profile"
             className="w-10 h-10 rounded-full border-2 border-cyan-400 object-cover"
           />
@@ -31,7 +22,7 @@ export default function Navbar({ theme, toggleTheme }) {
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-6">
-          {["about", "experience", "projects", "contact"].map((item) => (
+          {navItems.map((item) => (
             <a
               key={item}
               href={`#${item}`}
@@ -40,7 +31,6 @@ export default function Navbar({ theme, toggleTheme }) {
               {item.charAt(0).toUpperCase() + item.slice(1)}
             </a>
           ))}
-          {ThemeToggleButton}
         </div>
 
         {/* Mobile Hamburger */}
@@ -70,7 +60,7 @@ export default function Navbar({ theme, toggleTheme }) {
       {/* Mobile Menu Dropdown */}
       {menuOpen && (
         <div className="md:hidden bg-black/80 backdrop-blur-lg flex flex-col items-start p-5 space-y-4 border-t border-gray-700 z-40">
-          {["about", "experience", "projects", "contact"].map((item) => (
+          {navItems.map((item) => (
             <a
               key={item}
               href={`#${item}`}
@@ -80,7 +70,6 @@ export default function Navbar({ theme, toggleTheme }) {
               {item.charAt(0).toUpperCase() + item.slice(1)}
             </a>
           ))}
-          <div className="w-full flex justify-center">{ThemeToggleButton}</div>
         </div>
       )}
     </nav>

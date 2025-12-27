@@ -3,113 +3,149 @@ import { motion } from "framer-motion";
 export default function Experience() {
   const jobs = [
     {
+      title: "IT Technician",
+      company: "UMD - Division of Information Technology",
+      location: "College Park, MD",
+      date: "Sept 2025 – Present",
+      logo: "UMD.jpeg",
+      details:
+        "Diagnosed kernel, driver, and network configuration issues across 100+ devices, improving overall system efficiency. Automated OS imaging using WDS, Bomgar, and Ninite, reducing setup and configuration time by roughly 40%. Configured BIOS and drivers for 200+ computers to meet university endpoint security and compliance standards, ensuring a stable and secure IT environment.",
+    },
+    {
       title: "Software Engineering Intern",
       company: "Mphasis",
       location: "New York, NY",
       date: "Jun 2025 – Aug 2025",
       logo: "mphasis.png",
-      details: [
-        "Transformed documents into a Neo4j knowledge graph using Python for semantic search and relationship mapping",
-        "Built a robust pipeline for metadata tagging, semantic embedding, and CSV generation for Neo4j graph ingestion",
-        "Integrated OpenAI and RAG to enable natural language queries via React UI and Flask API for Cypher generation"
-      ]
+      details:
+        "Built a Neo4j knowledge graph for 30,000+ documents, improving semantic search precision and query speed by 20%. Designed comprehensive data pipelines for embeddings, reducing ingestion time by 35% and improving consistency. Integrated GPT and RAG models into a Flask–React app to support 500+ Cypher queries through an interactive chat interface.",
     },
     {
-      title: "Software Engineering Intern",
+      title: "AI Software Engineer Intern",
       company: "Apollonian.AI",
       location: "Washington, DC",
       date: "Feb 2025 – Jun 2025",
       logo: "apollonian.png",
-      details: [
-        "Developed responsive web pages using React, JavaScript, HTML/CSS, and integrated Firebase for real-time chat",
-        "Integrated OpenAI and Hugging Face models via RESTful APIs using Postman to power a 24/7 AI psychiatrist",
-        "Prototyped SadTalker for avatar-driven therapy, exploring emotion mapping and lip-sync for digital psychiatry"
-      ]
+      details:
+        "Developed a chat application delivering 1,000+ real-time AI therapy messages daily using React, Firebase, and JavaScript. Integrated OpenAI and Hugging Face APIs for dynamic, context-aware virtual mental health conversations. Prototyped SadTalker avatars with real-time emotion mapping and lip-sync, achieving sub-250 ms reaction latency for seamless user experience.",
     },
     {
       title: "AI Trainer",
       company: "Alignerr",
       location: "Fremont, CA",
-      date: "February 2025 – June 2025",
+      date: "Feb 2025 – Jun 2025",
       logo: "alignerr.png",
-      details: [
-        "Educated LLMs by refining AI-generated outputs, providing feedback to improve accuracy and domain relevance.",
-        "Guided reasoning by crafting step-by-step solutions to complex prompts, helping the model handle specific topics.",
-        "Conducted red-teaming to identify biases and limitations, testing model boundaries to ensure reliability."
-      ]
+      details:
+        "Improved LLM accuracy by evaluating and refining complex AI-generated replies across diverse domains and tasks. Authored detailed red-team scenarios and reasoning examples to strengthen overall model reliability. Partnered with machine learning engineers to optimize data pipelines, cutting processing overhead and reducing model bias by 25%.",
     },
     {
       title: "Lead Java Lecturer & Tutor",
       company: "Alpha Centauri",
       location: "Remote",
-      date: "February 2023 – December 2024",
+      date: "Feb 2023 – Dec 2024",
       logo: "alpha-centauri.png",
-      details: [
-        "Led team of 10+ tutors to deliver instruction and improve student outcomes through personalized guidance",
-        "Launched an online platform to streamline tutoring, increasing academic scores and student commitment by 30%",
-        "Tutored students of all ages, particularly in underserved communities, to enhance skills in programming languages"
-      ]
+      details:
+        "Led a team of 10+ tutors, delivering structured Java lessons to 50+ students. Designed optimized data pipelines and instructional materials, reducing administrative overhead by 25% while increasing engagement. Mentored junior tutors and implemented feedback loops to maintain high-quality teaching standards.",
     },
     {
       title: "Teacher Assistant",
       company: "Math Plus",
       location: "Hockessin, DE",
-      date: "April 2022 – December 2024",
+      date: "Apr 2022 – Dec 2024",
       logo: "mathplus.png",
-      details: [
-        "Provided personalized one-on-one and general group tutoring sessions for various levels of mathematics",
-        "Monitored each student’s progress to ensure student’s understanding of complex mathematical problems",
-        "Fostered a supportive learning environment, boosting students’ confidence and making math enjoyable"
-      ]
-    }
+      details:
+        "Provided personalized tutoring in mathematics, tracking student progress and identifying gaps. Fostered a supportive learning environment that encouraged curiosity, critical thinking, and consistent improvement. Assisted in curriculum design and implemented interactive exercises to enhance engagement.",
+    },
   ];
 
+  const stars = Array.from({ length: 50 }).map((_, i) => ({
+    id: i,
+    top: Math.random() * 100,
+    left: Math.random() * 100,
+    size: Math.random() * 3 + 1,
+    duration: 20 + Math.random() * 20,
+    delay: Math.random() * 10,
+  }));
+
   return (
-    <section>
-      <h2 className="text-3xl font-extrabold mb-8 text-center text-cyan-400 tracking-wide">Experience</h2>
-      <div className="relative max-w-3xl mx-auto">
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-cyan-400 to-purple-500 opacity-40 z-0" />
-        <div className="space-y-12 relative z-10">
-          {jobs.map((job, idx) => (
+    <section className="relative py-16 px-6 md:px-16 overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        {stars.map((star) => (
+          <motion.div
+            key={star.id}
+            className="absolute rounded-full bg-[#0ff] opacity-30"
+            style={{
+              width: star.size,
+              height: star.size,
+              top: `${star.top}%`,
+              left: `${star.left}%`,
+            }}
+            animate={{
+              x: [0, 20, 0, -20, 0],
+              y: [0, -10, 0, 10, 0],
+              opacity: [0.2, 0.8, 0.2],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: star.duration,
+              delay: star.delay,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
+
+      <h2
+        className="text-4xl md:text-5xl font-extrabold mb-16 text-center text-[#0ff] tracking-tight z-10 relative"
+        style={{ textShadow: "0 0 10px rgba(0,255,255,0.4)" }}
+      >
+        Experience
+      </h2>
+
+      <div className="space-y-16 relative z-10 max-w-5xl mx-auto">
+        {jobs.map((job, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: idx * 0.15 }}
+            className="relative flex flex-col md:flex-row items-start group"
+          >
             <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className={`flex flex-col md:flex-row items-center md:items-start ${idx % 2 === 0 ? "md:flex-row-reverse" : ""} group`}
+              className="glass-card flex flex-col md:w-full p-6 border border-[#0ff] group-hover:scale-105 group-hover:shadow-[#0ff]/40 transition-transform duration-300 relative"
+              whileHover={{
+                scale: 1.03,
+                boxShadow: "0 12px 48px rgba(0,255,255,0.4)",
+              }}
             >
-              {/* Timeline dot */}
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-purple-500 border-4 border-zinc-900 flex items-center justify-center z-20 shadow-lg md:mx-8 mb-4 md:mb-0">
-                <span className="text-white font-bold">{idx + 1}</span>
+              <div className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-[#0ff] to-purple-500 text-white font-bold text-lg shadow-lg">
+                {idx + 1}
               </div>
 
-              {/* Card */}
-              <div className="bg-zinc-800 rounded-xl shadow-xl p-6 w-full md:w-2/3 border border-cyan-700 group-hover:scale-105 transition-transform duration-300">
-                <div className="flex justify-between items-center mb-2">
-                  <div className="flex items-center space-x-3">
-                    <img
-                      src={`/logos/${job.logo}`}
-                      alt={`${job.company} logo`}
-                      className="w-10 h-10 rounded-full border border-cyan-400"
-                    />
-                    <h3 className="text-xl font-bold text-cyan-300">{job.title}</h3>
-                  </div>
-                  <span className="text-xs text-gray-400">{job.date}</span>
-                </div>
-                <div className="text-gray-300 font-semibold mb-1">
-                  {job.company}
-                  {job.location ? <span className="text-xs text-gray-400 ml-2">{job.location}</span> : null}
-                </div>
-                <ul className="list-disc list-inside mt-2 text-gray-200 space-y-1">
-                  {job.details.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
+              <div className="flex items-center space-x-3 mb-2">
+                <img
+                  src={`/logos/${job.logo}`}
+                  alt={`${job.company} logo`}
+                  className="w-10 h-10 rounded-full border border-[#0ff]"
+                />
+                <h3 className="text-xl font-bold text-[#0ff]">{job.title}</h3>
               </div>
+              <span className="text-xs text-gray-400 mb-2">{job.date}</span>
+              <div className="text-gray-300 font-semibold mb-2">
+                {job.company}
+                {job.location ? (
+                  <span className="text-xs text-gray-400 ml-2">
+                    {job.location}
+                  </span>
+                ) : null}
+              </div>
+              <p className="text-gray-200 mt-2 leading-relaxed">
+                {job.details}
+              </p>
             </motion.div>
-          ))}
-        </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );

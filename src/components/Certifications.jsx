@@ -4,53 +4,97 @@ import { BadgeCheck } from "lucide-react";
 const certifications = [
   {
     name: "AWS Certified Cloud Practitioner",
-    date: "Completeed August 2025",
+    date: "Completed August 2025",
     issuer: "Amazon Web Services",
-    credentialUrl: "https://www.credly.com/badges/1239a737-51c7-46bf-aa56-eed2c2a0ebb2/public_url"
+    credentialUrl:
+      "https://www.credly.com/badges/1239a737-51c7-46bf-aa56-eed2c2a0ebb2/public_url",
   },
   {
-    name: "Electronic Arts - Software Engineering Job Simulation",
+    name: "Electronic Arts – Software Engineering Job Simulation",
     date: "Completed January 2025",
     issuer: "Forage",
-    credentialUrl: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/j43dGscQHtJJ57N54/a77WE3de8qrxWferQ_j43dGscQHtJJ57N54_MkGzM7E3fgrPsBR7b_1737178148243_completion_certificate.pdf"
-  }
+    credentialUrl:
+      "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/j43dGscQHtJJ57N54/a77WE3de8qrxWferQ_j43dGscQHtJJ57N54_MkGzM7E3fgrPsBR7b_1737178148243_completion_certificate.pdf",
+  },
 ];
 
 export default function Certifications() {
   return (
     <section
       id="certifications"
-      className="my-24 px-12 py-16 md:px-24 md:py-20 bg-zinc-900 rounded-lg max-w-4xl mx-auto"
+      className="relative py-24 px-6 md:px-16 max-w-5xl mx-auto z-10"
     >
+      {/* Section Title */}
       <motion.h2
-        className="text-4xl font-extrabold text-cyan-400 mb-12 text-center"
-        initial={{ opacity: 0, y: 20 }}
+        className="text-4xl md:text-5xl font-extrabold text-[#0ff] mb-16 text-center tracking-tight"
+        style={{ textShadow: "0 0 10px rgba(0,255,255,0.4)" }}
+        initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
       >
         Certifications
       </motion.h2>
 
-      <div className="space-y-6">
+      {/* Certification Cards */}
+      <div className="space-y-8">
         {certifications.map(({ name, date, issuer, credentialUrl }, idx) => (
           <motion.div
             key={idx}
-            className="flex items-center space-x-4 bg-zinc-800 rounded-xl p-6 shadow-lg border border-cyan-700 hover:shadow-cyan-500/50 transition-shadow cursor-pointer"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: idx * 0.2, duration: 0.5 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: idx * 0.15, duration: 0.6 }}
+            viewport={{ once: true }}
             onClick={() => window.open(credentialUrl, "_blank")}
             role="button"
             tabIndex={0}
-            onKeyDown={e => {
+            onKeyDown={(e) => {
               if (e.key === "Enter") window.open(credentialUrl, "_blank");
             }}
+            className="
+                group relative cursor-pointer rounded-2xl
+                glass-card p-6 md:p-8
+                border border-cyan-700/50
+                hover:shadow-[0_0_35px_rgba(0,255,255,0.35)]
+                transition-all duration-300
+              "
           >
-            <BadgeCheck className="text-cyan-400 w-8 h-8 flex-shrink-0" />
-            <div>
-              <h3 className="text-lg font-semibold text-white">{name}</h3>
-              <p className="text-gray-400">{issuer}</p>
-              <p className="text-gray-300 text-sm italic">{date}</p>
+            {/* Left neon accent */}
+            <span
+              className="
+                  absolute left-0 top-6 bottom-6 w-[2px]
+                  bg-cyan-400/70
+                  rounded-full
+                  opacity-60
+                  group-hover:opacity-100
+                  transition-opacity
+                "
+            />
+
+            <div className="flex items-start gap-5">
+              {/* Icon */}
+              <BadgeCheck
+                className="
+                    text-cyan-400 w-9 h-9 flex-shrink-0
+                    group-hover:scale-110
+                    group-hover:drop-shadow-[0_0_10px_rgba(0,255,255,0.7)]
+                    transition-transform duration-300
+                  "
+              />
+
+              {/* Content */}
+              <div className="space-y-1">
+                <h3 className="text-lg md:text-xl font-semibold text-white">
+                  {name}
+                </h3>
+                <p className="text-gray-400">{issuer}</p>
+                <p className="text-sm text-gray-300 italic">{date}</p>
+
+                {/* subtle CTA */}
+                <p className="mt-2 text-sm text-cyan-400/80 opacity-0 group-hover:opacity-100 transition-opacity">
+                  View Credential →
+                </p>
+              </div>
             </div>
           </motion.div>
         ))}

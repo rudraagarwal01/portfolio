@@ -1,38 +1,194 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/* ================== Base ================== */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #000;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.gradient-bg {
+  background-color: #000;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* ================== Glassmorphism ================== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 48px rgba(0, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ================== Tech Grid Background ================== */
+.tech-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(0,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,255,255,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ================== Star Background ================== */
+.hero-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.hero-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background-color: #000;
+}
+
+/* Realistic stars */
+.hero-bg .star {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #0ff 60%);
+  opacity: 0.4;
+  pointer-events: none;
+  animation: twinkle 3s infinite alternate;
+}
+
+/* Twinkling animation */
+@keyframes twinkle {
+  0% { opacity: 0.2; transform: scale(0.5); }
+  50% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 0.2; transform: scale(0.5); }
+}
+
+/* General page styling */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #000;
+  color: white;
+}
+
+.gradient-bg {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.star {
+  position: absolute;
+  background: transparent;
+  pointer-events: none;
+  animation: twinkle 4s infinite ease-in-out;
+}
+
+/* Diamond star */
+.star::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: white;
+  transform: rotate(45deg);
+  border-radius: 1px;
+  opacity: 0.8;
+}
+
+/* Sparkle cross (optional variation) */
+.star.sparkle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: white;
+  transform: rotate(90deg);
+  border-radius: 1px;
+  opacity: 0.6;
+}
+
+/* Subtle twinkle */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.8) rotate(45deg);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(45deg);
   }
+}
+
+
+
+
+/* ================== Section Styling ================== */
+section {
+  position: relative;
+  z-index: 10;
+  margin-bottom: 4rem;
+}
+
+/* ================== Neon Headings ================== */
+h2 {
+  color: #0ff;
+  text-shadow: 0 0 8px #0ff;
+}
+
+h3 {
+  color: #0ff;
+}
+
+/* ================== Buttons & Links ================== */
+.App-link {
+  color: #61dafb;
+  transition: color 0.3s;
+}
+
+.App-link:hover {
+  color: #0ff;
+}
+
+/* ================== Cards/Skill Cards ================== */
+.card, .skill-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(0,255,255,0.2);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 6px 24px rgba(0,255,255,0.1);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.card:hover, .skill-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(0,255,255,0.3);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ================== Neon Glow Text ================== */
+.text-neon {
+  color: #0ff;
+  text-shadow:
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    0 0 40px #0ff;
 }
