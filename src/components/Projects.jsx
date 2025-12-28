@@ -50,19 +50,22 @@ export default function Projects() {
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.15, duration: 0.6 }}
+            transition={{ delay: i * 0.1, duration: 0.4 }} // Faster entrance
             viewport={{ once: true }}
-            whileHover={{ y: -8 }}
-            className="group relative p-[1.5px] rounded-3xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(59, 130, 246, 0.25)] overflow-hidden block cursor-pointer"
+            whileHover={{ 
+              y: -8,
+              transition: { duration: 0.2, ease: "easeOut" } // Faster hover popup
+            }}
+            className="group relative p-[1.5px] rounded-3xl transition-all duration-200 hover:shadow-[0_0_30px_rgba(59, 130, 246, 0.25)] overflow-hidden block cursor-pointer"
           >
-            {/* Outline Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-400 via-blue-600 to-purple-600 opacity-70 group-hover:opacity-100 transition-opacity" />
+            {/* Outline Gradient - Transition duration lowered to 200ms */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-400 via-blue-600 to-purple-600 opacity-70 group-hover:opacity-100 transition-opacity duration-200" />
 
             {/* Inner Content Card */}
             <div className="relative bg-black rounded-[calc(1.5rem-1.5px)] p-7 h-full flex flex-col border border-blue-500/10">
               <div className="flex justify-between items-start mb-3">
                 <div className="flex flex-col">
-                  <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
+                  <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors duration-200">
                     {p.title}
                   </h3>
                   {p.type && (
@@ -72,8 +75,8 @@ export default function Projects() {
                   )}
                 </div>
 
-                {/* Visit Link Icon - Removed group-hover so it only lights up on direct hover */}
-                <div className="p-2 rounded-xl bg-white/5 text-blue-400 hover:text-white hover:bg-blue-600 transition-all duration-300 border border-white/10 hover:border-blue-500 relative z-20">
+                {/* Visit Link Icon */}
+                <div className="p-2 rounded-xl bg-white/5 text-blue-400 hover:text-white hover:bg-blue-600 transition-all duration-200 border border-white/10 hover:border-blue-500 relative z-20">
                   {p.isGithub ? (
                     <Github size={20} />
                   ) : (
@@ -90,7 +93,7 @@ export default function Projects() {
                 {p.tech.map((tech, j) => (
                   <span
                     key={j}
-                    className="bg-blue-900/20 text-blue-300 text-xs font-medium px-3 py-1 rounded-full border border-blue-700/30 group-hover:border-blue-400/40 transition-colors duration-300"
+                    className="bg-blue-900/20 text-blue-300 text-xs font-medium px-3 py-1 rounded-full border border-blue-700/30 group-hover:border-blue-400/40 transition-colors duration-200"
                   >
                     {tech}
                   </span>
