@@ -273,31 +273,6 @@ function FeaturedCard({ p }) {
   );
 }
 
-// ─── Secondary project card ───────────────────────────────────────────────────
-function ProjectCard({ p }) {
-  return (
-    <TiltCard className="h-full bg-[#0d0d10] border border-transparent rounded-2xl overflow-hidden flex flex-col group hover:border-white/20 transition-colors duration-300">
-      <Chrome filename={p.filename} link={p.link} isGithub={p.isGithub} />
-
-      <div className="flex-1 p-5 overflow-hidden">
-        {p.codeBlock}
-      </div>
-
-      <div className="border-t border-white/6 bg-[#111115] p-5 flex-shrink-0">
-        <span className="text-[10px] font-mono text-blue-400/70 tracking-widest uppercase block mb-1.5">
-          Project
-        </span>
-        <h3 className="font-mono font-bold text-zinc-100 text-base leading-snug mb-2 group-hover:text-blue-400 transition-colors duration-200">
-          {p.title}
-        </h3>
-        <p className="text-xs text-zinc-500 leading-relaxed mb-3">{p.shortDesc}</p>
-        <div className="flex flex-wrap gap-1.5">
-          {p.tech.map((t) => <TechPill key={t} name={t} />)}
-        </div>
-      </div>
-    </TiltCard>
-  );
-}
 
 // ─── Project data ─────────────────────────────────────────────────────────────
 const M = ({ children }) => (
