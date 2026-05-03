@@ -1,158 +1,159 @@
-import React from "react";
-
 import { motion } from "framer-motion";
-
+import { Shield, Lock, Scale, EyeOff } from "lucide-react";
 import {
-  FaHtml5,
-  FaCss3Alt,
-  FaJs,
-  FaPython,
-  FaReact,
-  FaGitAlt,
-  FaGithub,
-  FaNodeJs,
-  FaAws,
-  FaSwift,
-  FaJava,
-  FaCloud,
-} from "react-icons/fa";
-
-import {
-  SiTailwindcss,
-  SiFlask,
-  SiFirebase,
-  SiMongodb,
-  SiPostgresql,
-  SiXcode,
-  SiPostman,
-  SiInsomnia,
-  SiPytorch,
-  SiFramer,
-  SiDocker,
+  SiPython, SiCplusplus, SiJavascript, SiSwift,
+  SiPytorch, SiNeo4J, SiOpenai, SiHuggingface, SiFastapi,
+  SiReact, SiAmazonwebservices, SiDocker, SiPostgresql, SiGit, SiMongodb,
 } from "react-icons/si";
+import { FaJava } from "react-icons/fa";
 
-const skillsCategories = [
+function hexGlow(hex, alpha = 0.32) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `drop-shadow(0 0 8px rgba(${r},${g},${b},${alpha}))`;
+}
+
+// ─── Quadrant data ────────────────────────────────────────────────────────────
+const quadrants = [
   {
-    label: "Programming Languages",
-
+    id: "languages",
+    num: "01",
+    label: "Core Languages",
+    desc: "Primary programming languages",
     skills: [
-      { name: "HTML", icon: <FaHtml5 className="text-orange-500" /> },
-
-      { name: "CSS", icon: <FaCss3Alt className="text-blue-500" /> },
-
-      { name: "JavaScript", icon: <FaJs className="text-yellow-400" /> },
-
-      { name: "Python", icon: <FaPython className="text-blue-400" /> },
-
-      { name: "Swift", icon: <FaSwift className="text-orange-400" /> },
-
-      { name: "Java", icon: <FaJava className="text-red-600" /> },
+      { name: "Python",     Icon: SiPython,     color: "#3776AB" },
+      { name: "Java",       Icon: FaJava,        color: "#ED8B00" },
+      { name: "C++",        Icon: SiCplusplus,  color: "#00599C" },
+      { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
+      { name: "Swift",      Icon: SiSwift,      color: "#FA7343" },
     ],
   },
-
   {
-    label: "Frameworks & Libraries",
-
+    id: "ai-ml",
+    num: "02",
+    label: "AI & Machine Learning",
+    desc: "Models, frameworks & intelligent systems",
     skills: [
-      { name: "React", icon: <FaReact className="text-blue-400" /> },
-
-      {
-        name: "Tailwind CSS",
-        icon: <SiTailwindcss className="text-blue-400" />,
-      },
-
-      { name: "Flask", icon: <SiFlask className="text-white" /> },
-
-      { name: "Firebase", icon: <SiFirebase className="text-yellow-400" /> },
-
-      { name: "PyTorch", icon: <SiPytorch className="text-red-600" /> },
-
-      { name: "Framer Motion", icon: <SiFramer className="text-pink-500" /> },
+      { name: "PyTorch",     Icon: SiPytorch,     color: "#EE4C2C" },
+      { name: "Neo4j",       Icon: SiNeo4J,       color: "#008CC1" },
+      { name: "OpenAI",      Icon: SiOpenai,      color: "#412991" },
+      { name: "HuggingFace", Icon: SiHuggingface, color: "#FFD21E" },
+      { name: "FastAPI",     Icon: SiFastapi,     color: "#05998B" },
     ],
   },
-
   {
-    label: "Backend & Database",
-
+    id: "engineering",
+    num: "03",
+    label: "Engineering & Cloud",
+    desc: "Full-stack, cloud & DevOps tooling",
     skills: [
-      { name: "Node.js", icon: <FaNodeJs className="text-green-400" /> },
-
-      { name: "MongoDB", icon: <SiMongodb className="text-green-500" /> },
-
-      { name: "PostgreSQL", icon: <SiPostgresql className="text-blue-500" /> },
-
-      { name: "AWS", icon: <FaAws className="text-orange-300" /> },
-
-      { name: "Azure", icon: <FaCloud className="text-blue-400" /> },
-
-      { name: "Docker", icon: <SiDocker className="text-blue-600" /> },
+      { name: "React",      Icon: SiReact,              color: "#61DAFB" },
+      { name: "AWS",        Icon: SiAmazonwebservices,  color: "#FF9900" },
+      { name: "Docker",     Icon: SiDocker,             color: "#2496ED" },
+      { name: "PostgreSQL", Icon: SiPostgresql,         color: "#4169E1" },
+      { name: "Git",        Icon: SiGit,                color: "#F05032" },
+      { name: "MongoDB",    Icon: SiMongodb,            color: "#47A248" },
     ],
   },
-
   {
-    label: "Developer Tools",
-
+    id: "security",
+    num: "04",
+    label: "Security & Ethics",
+    desc: "Risk management, privacy & AI ethics",
     skills: [
-      { name: "Git", icon: <FaGitAlt className="text-red-400" /> },
-
-      { name: "GitHub", icon: <FaGithub className="text-gray-300" /> },
-
-      { name: "Xcode", icon: <SiXcode className="text-blue-300" /> },
-
-      { name: "Postman", icon: <SiPostman className="text-orange-400" /> },
-
-      { name: "Insomnia", icon: <SiInsomnia className="text-purple-400" /> },
-
-      {
-        name: "OpenAI API",
-        icon: <span className="text-green-300 text-xl">🤖</span>,
-      },
+      { name: "Risk Management", Icon: Shield, color: "#10B981" },
+      { name: "Privacy",         Icon: EyeOff, color: "#A78BFA" },
+      { name: "AI Ethics",       Icon: Scale,  color: "#0EA5E9" },
+      { name: "Data Protection", Icon: Lock,   color: "#F97316" },
     ],
   },
 ];
 
+// ─── Pill ─────────────────────────────────────────────────────────────────────
+function Pill({ name, Icon, color }) {
+  return (
+    <motion.span
+      whileHover={{ scale: 1.06 }}
+      transition={{ type: "spring", stiffness: 400, damping: 22 }}
+      style={{ filter: hexGlow(color) }}
+      className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-[12px] font-mono cursor-default select-none bg-white/5 border border-white/8 hover:bg-white/10 transition-colors duration-200"
+    >
+      <Icon size={14} style={{ color }} className="flex-shrink-0" />
+      <span className="text-zinc-300">{name}</span>
+    </motion.span>
+  );
+}
+
+// ─── Card ─────────────────────────────────────────────────────────────────────
+const cardVariants = {
+  hidden:  { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
+};
+
+function QuadrantCard({ q }) {
+  return (
+    <motion.div
+      variants={cardVariants}
+      whileHover={{ scale: 1.015, boxShadow: "0 0 32px rgba(59,130,246,0.06)" }}
+      transition={{ type: "spring", stiffness: 280, damping: 28 }}
+      className="bg-[#141418] border border-white/5 rounded-2xl p-8 flex flex-col gap-6"
+    >
+      <div className="flex items-start justify-between">
+        <div>
+          <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-1.5">
+            {q.desc}
+          </p>
+          <h3 className="font-mono font-bold text-sm text-zinc-100 tracking-tight">
+            {q.label}
+          </h3>
+        </div>
+        <span className="text-[11px] font-mono text-zinc-700 bg-white/4 border border-white/6 px-2 py-1 rounded-lg flex-shrink-0">
+          {q.num}
+        </span>
+      </div>
+
+      <div className="flex flex-wrap gap-2.5">
+        {q.skills.map((s) => (
+          <Pill key={s.name} {...s} />
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+// ─── Section ──────────────────────────────────────────────────────────────────
 export default function Skills() {
   return (
-    <section className="py-24 px-6 md:px-20 max-w-7xl mx-auto">
-      <motion.h2
-        className="text-4xl md:text-5xl font-extrabold text-blue-500 mb-16 text-center tracking-tight"
-        style={{ textShadow: "0 0 15px rgba(59, 130, 246, 0.4)" }}
-        initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        My Skills
-      </motion.h2>
+    <section id="skills" className="py-24 px-6">
+      <div className="max-w-6xl mx-auto">
 
-      <div className="grid gap-12 sm:grid-cols-2">
-        {skillsCategories.map((category) => (
-          <div
-            key={category.label}
-            className="p-6 rounded-xl border border-white/10 bg-white/5 glass-card"
-          >
-            <h3 className="text-xl font-semibold mb-6 text-blue-300">
-              {category.label}
-            </h3>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55 }}
+          className="mb-12"
+        >
+          <p className="text-xs font-mono text-blue-400 tracking-[0.2em] uppercase mb-3">
+            Technical Stack
+          </p>
+          <h2 className="font-mono font-bold text-3xl md:text-4xl text-zinc-50 tracking-tight uppercase">
+            Skills
+          </h2>
+        </motion.div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-              {category.skills.map((skill) => (
-                <div
-                  key={skill.name}
-                  className="skill-card flex flex-col items-center justify-center p-4 bg-white/5 rounded-xl border border-white/10 transition-all duration-300 cursor-default
-
-hover:scale-105 hover:shadow-[inset_0_0_8px_#3b82f6] hover:border-blue-500"
-                >
-                  <span className="text-3xl mb-2">{skill.icon}</span>
-
-                  <span className="text-sm font-medium text-gray-200">
-                    {skill.name}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+        <motion.div
+          className="grid sm:grid-cols-2 gap-5"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-30px" }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+        >
+          {quadrants.map((q) => (
+            <QuadrantCard key={q.id} q={q} />
+          ))}
+        </motion.div>
       </div>
     </section>
   );

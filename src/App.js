@@ -1,66 +1,112 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import Certifications from "./components/Certifications";
+import Projects from "./components/Projects";
+import Skills from "./components/Skills";
 import Leadership from "./components/Leadership";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import CustomCursor from "./components/CustomCursor";
 import ScrollProgress from "./components/ScrollProgress";
 import StarBackground from "./components/StarBackground";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import "./App.css";
 
 export default function App() {
-  const [theme, setTheme] = useState("dark");
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [scrollBarVisible, setScrollBarVisible] = useState(false);
+  const [cursor, setCursor] = useState({ x: -1000, y: -1000 });
+  const rafRef = useRef(null);
+  const hideTimerRef = useRef(null);
+  const thumbRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollTop;
-      const windowHeight =
+      const total =
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
-      setScrollProgress((totalScroll / windowHeight) * 100);
+      const pct = (document.documentElement.scrollTop / total) * 100;
+
+      // Update thumb position directly — bypasses React render cycle, zero lag
+      if (thumbRef.current) {
+        thumbRef.current.style.top       = `${pct}%`;
+        thumbRef.current.style.transform = `translateY(-${pct}%)`;
+      }
+
+      setScrollProgress(pct);
+      setScrollBarVisible(true);
+      clearTimeout(hideTimerRef.current);
+      hideTimerRef.current = setTimeout(() => setScrollBarVisible(false), 1500);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(hideTimerRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    const onMove = (e) => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(() =>
+        setCursor({ x: e.clientX, y: e.clientY })
+      );
+    };
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   return (
-    <div className="relative min-h-screen font-sans bg-black overflow-x-hidden">
-      {/* Background Layers */}
+    <div className="relative min-h-screen overflow-x-hidden bg-[#0c0c0e]">
       <StarBackground />
       <div className="tech-grid" />
 
-      {/* UI Overlays */}
-      <CustomCursor />
+      {/* Cursor spotlight */}
+      <div
+        className="fixed inset-0 z-[2] pointer-events-none"
+        style={{
+          background: `radial-gradient(650px circle at ${cursor.x}px ${cursor.y}px, rgba(59,130,246,0.05), transparent 40%)`,
+        }}
+      />
+
       <ScrollProgress progress={scrollProgress} />
-      <Navbar theme={theme} toggleTheme={() => setTheme(theme === "dark" ? "light" : "dark")} />
+      <Navbar />
 
-      <AnimatePresence mode="wait">
-        <motion.main
-          className="relative z-10"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -30 }}
-          transition={{ duration: 0.5 }}
-        >
-          <section id="home"><Hero /></section>
-          <section id="about"><About /></section>
-          <section id="experience"><Experience /></section>
-          <section id="projects"><Projects /></section>
-          <section id="skills"><Skills /></section>
-          <section id="certifications"><Certifications /></section>
-          <section id="leadership"><Leadership /></section>
-        </motion.main>
-      </AnimatePresence>
+      <motion.main
+        className="relative z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.35 }}
+      >
+        <section id="home"><Hero /></section>
+        <section id="about"><About /></section>
+        <section id="experience"><Experience /></section>
+        <section id="certifications"><Certifications /></section>
+        <section id="projects"><Projects /></section>
+        <section id="skills"><Skills /></section>
+        <section id="leadership"><Leadership /></section>
+        <section id="contact"><Contact /></section>
+      </motion.main>
 
-      {/* FOOTER MOVED HERE: Outside of main and section wrappers */}
       <Footer />
+
+      {/* Disappearing scroll indicator */}
+      <div
+        className="fixed right-2 top-3 bottom-3 z-50 w-[5px] pointer-events-none transition-opacity duration-500"
+        style={{ opacity: scrollBarVisible ? 1 : 0 }}
+      >
+        <div className="absolute inset-0 rounded-full bg-white/8" />
+        <div
+          ref={thumbRef}
+          className="absolute w-full rounded-full bg-white/40"
+          style={{ height: "64px" }}
+        />
+      </div>
     </div>
   );
 }
