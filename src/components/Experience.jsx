@@ -92,40 +92,6 @@ const jobs = [
     ],
     statusBar: "MODELS: LLMs | ROLE: EVALUATOR | BIAS: −25%",
   },
-  {
-    title: "Lead Java Lecturer & Tutor",
-    company: "Alpha Centauri",
-    location: "Remote",
-    date: "Feb 2023 – Dec 2024",
-    logo: "alpha-centauri.png",
-    points: [
-      <>Led <M>10+</M> tutors delivering structured Java lessons to <M>50+</M> students</>,
-      <>Designed instructional materials reducing administrative overhead by <M>25%</M></>,
-      <>Implemented feedback loops and mentored junior tutors to maintain high teaching standards</>,
-    ],
-    tech: [
-      { Icon: FaJava, color: "#ED8B00" },
-      { Icon: SiGit,  color: "#F05032" },
-    ],
-    statusBar: "STUDENTS: 50+ | TEAM: 10+ TUTORS | LANG: JAVA",
-  },
-  {
-    title: "Teacher Assistant",
-    company: "Math Plus",
-    location: "Hockessin, DE",
-    date: "Apr 2022 – Dec 2024",
-    logo: "mathplus.png",
-    points: [
-      <>Provided personalized mathematics tutoring, tracking student progress and knowledge gaps</>,
-      <>Fostered a learning environment encouraging curiosity, critical thinking, and consistent growth</>,
-      <>Assisted in curriculum design and implemented interactive exercises to boost engagement</>,
-    ],
-    tech: [
-      { Icon: SiWolframmathematica, color: "#DD1100" },
-      { Icon: SiKhanacademy,        color: "#14BF96" },
-    ],
-    statusBar: "ROLE: TA | DURATION: 2+ YEARS | FOCUS: MATHEMATICS",
-  },
 ];
 
 // ─── Card ─────────────────────────────────────────────────────────────────────
