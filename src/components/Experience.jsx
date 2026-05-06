@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { SiPython, SiNeo4J, SiReact, SiFastapi, SiAmazonwebservices, SiOpenai, SiLinux, SiGit, SiWolframmathematica, SiKhanacademy } from "react-icons/si";
+import { SiPython, SiNeo4J, SiReact, SiFastapi, SiAmazonwebservices, SiOpenai, SiLinux} from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 import { Shield } from "lucide-react";
 
