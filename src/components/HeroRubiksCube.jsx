@@ -344,7 +344,7 @@ export default function HeroRubiksCube() {
   return (
     <div className="w-full aspect-square max-w-[440px] mx-auto">
       <Canvas
-        camera={{ position: [0, 0, 8], fov: 45 }}
+        camera={{ position: [0, 0, 11], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
         dpr={[1, 2]}
         style={{ width: "100%", height: "100%" }}
