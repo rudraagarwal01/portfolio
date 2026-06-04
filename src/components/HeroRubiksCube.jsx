@@ -342,9 +342,9 @@ function RubiksScene() {
 // never clips at any angle — achieved through FOV + camera distance alone.
 export default function HeroRubiksCube() {
   return (
-    <div className="w-full aspect-square max-w-[440px] mx-auto">
+    <div className="w-full aspect-square max-w-[520px] mx-auto">
       <Canvas
-        camera={{ position: [0, 0, 11], fov: 45 }}
+        camera={{ position: [0, 0, 14], fov: 55 }}
         gl={{ antialias: true, alpha: true }}
         dpr={[1, 2]}
         style={{ width: "100%", height: "100%" }}
