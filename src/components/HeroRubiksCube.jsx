@@ -1,4 +1,4 @@
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, RoundedBox } from "@react-three/drei";
 
@@ -89,6 +89,8 @@ function RubiksScene() {
       interacting.current = false;
     }, 1200);
   }, []);
+
+  useEffect(() => () => clearTimeout(resumeTimer.current), []);
 
   return (
     <>
