@@ -315,7 +315,7 @@ function RubiksScene() {
       {/* Inner blue glow bleeds through the transparent bodies */}
       <pointLight position={[0, 0, 0]}   intensity={0.45} color="#0055ff" distance={3.5} />
 
-      <group ref={groupRef} rotation={[0.30, 0.50, 0]}>
+      <group ref={groupRef} rotation={[0.30, 0.50, 0]} scale={1.5}>
         {cubiesData.current.map((c, i) => (
           <Cubie
             key={`${c.icx}|${c.icy}|${c.icz}`}
