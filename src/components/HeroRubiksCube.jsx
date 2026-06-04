@@ -1,6 +1,6 @@
 import { useRef, useCallback, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, RoundedBox } from "@react-three/drei";
+import { OrbitControls, RoundedBox, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
 
 // ── Geometry constants ─────────────────────────────────────────────────────────
@@ -305,6 +305,8 @@ function RubiksScene() {
 
   return (
     <>
+      <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={55} />
+
       {/* Cool-blue ambient to tint the transparent bodies */}
       <ambientLight intensity={0.30} color="#8899ff" />
       <directionalLight position={[8, 10, 6]} intensity={1.20} color="#ffffff" />
@@ -342,9 +344,8 @@ function RubiksScene() {
 // never clips at any angle — achieved through FOV + camera distance alone.
 export default function HeroRubiksCube() {
   return (
-    <div className="w-full aspect-square max-w-[520px] mx-auto">
+    <div className="w-full aspect-square max-w-[440px] mx-auto">
       <Canvas
-        camera={{ position: [0, 0, 14], fov: 55 }}
         gl={{ antialias: true, alpha: true }}
         dpr={[1, 2]}
         style={{ width: "100%", height: "100%" }}
