@@ -98,11 +98,11 @@ const FRAG = /* glsl */`
     // Slow shimmer on traces
     float shimmer = 0.75 + 0.25 * sin(uTime * 1.3 + h21(floor(vUv * 9.0)) * 6.2832);
 
-    // Electric blue traces, deep purple nodes, cyan data, blue-white pulse
-    vec3 col = vec3(0.06, 0.48, 1.00) * tr * shimmer    // trace
-             + vec3(0.55, 0.05, 0.95) * nd               // node
-             + vec3(0.00, 0.90, 1.00) * ds               // data
-             + vec3(0.30, 0.60, 1.00) * pl * 0.50;       // pulse
+    // Site palette: blue-500 traces, violet-600 nodes, blue-300 data, violet-300 pulse
+    vec3 col = vec3(0.23, 0.51, 0.96) * tr * shimmer    // #3b82f6 trace
+             + vec3(0.49, 0.23, 0.93) * nd               // #7c3aed node
+             + vec3(0.58, 0.77, 0.99) * ds               // #93c5fd data
+             + vec3(0.77, 0.71, 0.99) * pl * 0.50;       // #c4b5fd pulse
 
     float alpha = max(tr * 0.80, max(nd * 0.75, max(ds * 0.65, pl * 0.55)));
 
@@ -305,7 +305,7 @@ function RubiksScene() {
 
   return (
     <>
-      <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={55} />
+      <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={60} />
 
       {/* Cool-blue ambient to tint the transparent bodies */}
       <ambientLight intensity={0.30} color="#8899ff" />
@@ -315,7 +315,7 @@ function RubiksScene() {
       {/* Inner blue glow bleeds through the transparent bodies */}
       <pointLight position={[0, 0, 0]}   intensity={0.45} color="#0055ff" distance={3.5} />
 
-      <group ref={groupRef} rotation={[0.30, 0.50, 0]} scale={2.25}>
+      <group ref={groupRef} rotation={[0.30, 0.50, 0]} scale={2.7}>
         {cubiesData.current.map((c, i) => (
           <Cubie
             key={`${c.icx}|${c.icy}|${c.icz}`}
