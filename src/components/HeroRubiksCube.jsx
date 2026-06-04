@@ -14,7 +14,7 @@ const FACE_COLORS = {
 
 const SIZE   = 0.905;  // cubie body edge length
 const RADIUS = 0.055;  // RoundedBox corner radius
-const GAP    = 0.095;  // half-gap between adjacent cubie centres → step = SIZE + GAP*2 = 1.095 → actually step = 1.0
+const GAP    = 0.095;  // space on each side between adjacent cubies
 const STEP   = SIZE + GAP * 2; // 1.095 — distance between cubie centers
 const SW     = 0.76;   // sticker plane width/height
 const SD     = SIZE / 2 + 0.003; // sticker offset from cubie face center
