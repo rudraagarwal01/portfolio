@@ -306,7 +306,7 @@ function RubiksScene() {
 
   return (
     <>
-      <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={60} />
+      <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={68} />
 
       <ambientLight intensity={0.30} color="#8899ff" />
       <directionalLight position={[8, 10, 6]} intensity={1.20} color="#ffffff" />
@@ -341,7 +341,7 @@ function RubiksScene() {
 // ── HeroRubiksCube ─────────────────────────────────────────────────────────────
 export default function HeroRubiksCube() {
   return (
-    <div className="w-full aspect-square max-w-[440px] mx-auto">
+    <div style={{ width: "100%", height: "520px" }}>
       <Canvas
         gl={{ antialias: true, alpha: true }}
         dpr={[1, 2]}
