@@ -151,8 +151,6 @@ function CircuitFace({ position, rotation }) {
 }
 
 // ── Cubie ──────────────────────────────────────────────────────────────────────
-// meshRef is a plain { current: null } — R3F assigns .current on mount.
-// icx/icy/icz are initial grid coords; they determine which circuit faces render.
 function Cubie({ meshRef, icx, icy, icz }) {
   return (
     <group ref={meshRef}>
@@ -188,7 +186,9 @@ function RubiksScene() {
   const cubiesData   = useRef(makeInitialCubies());
   const cubieRefs    = useRef(cubiesData.current.map(() => ({ current: null })));
   const activeTwists = useRef([]);
-  const nextTwistIn  = useRef(0.6);
+  
+  // Adjusted initial wait time before first twist happens (in seconds)
+  const nextTwistIn  = useRef(1.0); 
 
   useEffect(() => () => clearTimeout(resumeTimer.current), []);
 
@@ -227,14 +227,15 @@ function RubiksScene() {
     // Drive circuit board animation
     circuitMat.uniforms.uTime.value = clock.elapsedTime;
 
-    // Gentle global auto-rotation — the layer twists provide the main kinetics
+    // Gentle global auto-rotation
     if (!interacting.current && groupRef.current) {
       groupRef.current.rotation.y += delta * 0.18;
       groupRef.current.rotation.x += delta * 0.07;
     }
 
     // ── Process all active layer twists ────────────────────────────────────────
-    const DURATION = 0.30;
+    // CHANGED: Increased from 0.30 to 0.85 seconds for a slower, cleaner twist action
+    const DURATION = 0.85; 
     const toRemove = [];
 
     activeTwists.current.forEach((ts, idx) => {
@@ -270,16 +271,16 @@ function RubiksScene() {
       }
     });
 
-    // Remove completed twists (reverse-order splice preserves remaining indices)
     for (let i = toRemove.length - 1; i >= 0; i--) {
       activeTwists.current.splice(toRemove[i], 1);
     }
 
-    // Kick off new twists at a rapid, hypnotic cadence
+    // ── Cadence tracker for initiating new twists ──────────────────────────────
     nextTwistIn.current -= delta;
     if (nextTwistIn.current <= 0) {
       tryStartTwist();
-      nextTwistIn.current = 0.50 + Math.random() * 0.80;
+      // CHANGED: Increased wait intervals so multiple random moves aren't colliding constantly
+      nextTwistIn.current = 1.20 + Math.random() * 1.50; 
     }
 
     // Pin non-busy cubies to their settled positions
@@ -307,12 +308,10 @@ function RubiksScene() {
     <>
       <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={60} />
 
-      {/* Cool-blue ambient to tint the transparent bodies */}
       <ambientLight intensity={0.30} color="#8899ff" />
       <directionalLight position={[8, 10, 6]} intensity={1.20} color="#ffffff" />
       <pointLight position={[-5, -4, -5]} intensity={0.70} color="#2244ff" />
       <pointLight position={[4, 6, 4]}   intensity={0.28} color="#9933ff" />
-      {/* Inner blue glow bleeds through the transparent bodies */}
       <pointLight position={[0, 0, 0]}   intensity={0.45} color="#0055ff" distance={3.5} />
 
       <group ref={groupRef} rotation={[0.30, 0.50, 0]} scale={2.3}>
@@ -340,8 +339,6 @@ function RubiksScene() {
 }
 
 // ── HeroRubiksCube ─────────────────────────────────────────────────────────────
-// Canvas is sized wider than the cube's diagonal bounding sphere so rotation
-// never clips at any angle — achieved through FOV + camera distance alone.
 export default function HeroRubiksCube() {
   return (
     <div className="w-full aspect-square max-w-[440px] mx-auto">

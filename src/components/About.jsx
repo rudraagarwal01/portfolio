@@ -29,9 +29,19 @@ export default function About() {
           <p className="text-xs font-mono text-blue-600 dark:text-blue-400 tracking-[0.2em] uppercase mb-3">
             Background
           </p>
-          <h2 className="font-mono font-bold text-3xl md:text-4xl text-slate-900 dark:text-zinc-50 tracking-tight">
+          {/* Added uppercase utility class to maintain consistent visual system */}
+          <h2 className="font-mono font-bold text-3xl md:text-4xl text-slate-900 dark:text-zinc-50 tracking-tight uppercase">
             About Me
           </h2>
+          {/* Animated gradient accent line exactly matching the Experience section */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{ originX: 0 }}
+            className="mt-3 h-[2px] w-16 bg-gradient-to-r from-blue-500 to-transparent"
+          />
         </motion.div>
 
         {/* Two-column layout: bio + academic grid */}

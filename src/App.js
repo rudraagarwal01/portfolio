@@ -62,15 +62,19 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-[#0c0c0e]">
+    <div className="relative min-h-screen overflow-x-hidden bg-[#06060e]">
       <StarBackground />
       <div className="tech-grid" />
 
-      {/* Cursor spotlight */}
+      {/* Ambient gradient orbs */}
+      <div className="fixed top-[-20vh] right-[-10vw] w-[55vw] h-[55vw] max-w-[680px] max-h-[680px] rounded-full bg-blue-600/[0.07] blur-[110px] pointer-events-none z-[1]" />
+      <div className="fixed bottom-[5vh] left-[-12vw] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] rounded-full bg-violet-700/[0.07] blur-[110px] pointer-events-none z-[1]" />
+
+      {/* Cursor spotlight — blue+violet blend */}
       <div
         className="fixed inset-0 z-[2] pointer-events-none"
         style={{
-          background: `radial-gradient(650px circle at ${cursor.x}px ${cursor.y}px, rgba(59,130,246,0.05), transparent 40%)`,
+          background: `radial-gradient(700px circle at ${cursor.x}px ${cursor.y}px, rgba(59,130,246,0.07), rgba(124,58,237,0.03) 50%, transparent 65%)`,
         }}
       />
 

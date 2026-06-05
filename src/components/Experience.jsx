@@ -13,7 +13,7 @@ const jobs = [
   {
     title: "Software Engineering Intern",
     company: "Fannie Mae",
-    location: "Reston, VA",
+    location: "Washington, D.C.",
     date: "Jun 2026 – Aug 2026",
     logo: "fanniemae.png",
     incoming: true,
@@ -22,7 +22,7 @@ const jobs = [
       { Icon: FaJava,              color: "#ED8B00" },
       { Icon: SiAmazonwebservices, color: "#FF9900" },
     ],
-    statusBar: "STATUS: INCOMING | TERM: SUMMER 2026 | LOC: RESTON, VA",
+    statusBar: "STATUS: INCOMING | TERM: SUMMER 2026 | LOC: Washington, D.C.",
   },
   {
     title: "IT Technician",
@@ -32,7 +32,7 @@ const jobs = [
     logo: "UMD.jpeg",
     points: [
       <>Diagnosed kernel, driver, and network issues, supporting <M>40k+ users</M> across campus infrastructure</>,
-      <>Automated OS imaging via WDS and Ninite — cut device setup time by <M>~40%</M></>,
+      <>Automated OS imaging via WDS and Ninite; cut device setup time by <M>~40%</M></>,
       <>Configured BIOS and endpoint security settings for <M>200+ computers</M></>,
     ],
     tech: [
@@ -137,13 +137,14 @@ function ExperienceCard({ job, i }) {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 flex-shrink-0">
+          <div className="flex items-center gap-3 flex-shrink-0">
             {job.incoming && (
               <span className="text-[9px] font-mono font-bold text-blue-400 bg-blue-500/15 border border-blue-500/25 px-2.5 py-1 rounded-full uppercase tracking-widest animate-pulse">
-                Incoming
+                Current
               </span>
             )}
-            <span className="text-[10px] font-mono text-zinc-600 bg-white/4 border border-white/6 px-2.5 py-1 rounded-md whitespace-nowrap">
+            {/* OPTIMIZED: Removed background, border, and padding classes to let text sit cleanly */}
+            <span className="text-xs font-mono font-medium text-zinc-400 whitespace-nowrap">
               {job.date}
             </span>
           </div>
@@ -152,17 +153,27 @@ function ExperienceCard({ job, i }) {
         {/* Body */}
         {job.incoming ? (
           <p className="text-sm text-blue-400/60 italic">
-            Excited to join Fannie Mae as a Software Engineering Intern — more details to come.
+            Software Engineering Intern at Fannie Mae, working on intelligent document processing. I'm combining AWS Textract OCR with Amazon Bedrock foundation models to extract and structure data from complex documents, along with the serverless cloud infrastructure (Lambda, S3) that runs it at scale.
           </p>
         ) : (
-          <ul className="space-y-2">
+          <motion.ul
+            className="space-y-2"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-20px" }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } } }}
+          >
             {job.points.map((pt, j) => (
-              <li key={j} className="flex items-start gap-3 text-sm text-slate-50 leading-relaxed">
+              <motion.li
+                key={j}
+                variants={{ hidden: { opacity: 0, x: -8 }, visible: { opacity: 1, x: 0, transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] } } }}
+                className="flex items-start gap-3 text-sm text-slate-50 leading-relaxed"
+              >
                 <span className="mt-[7px] w-1 h-1 rounded-full bg-blue-500/60 flex-shrink-0" />
                 {pt}
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         )}
       </div>
 
@@ -215,6 +226,14 @@ export default function Experience() {
           <h2 className="font-mono font-bold text-3xl md:text-4xl text-zinc-50 tracking-tight uppercase">
             Experience
           </h2>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{ originX: 0 }}
+            className="mt-3 h-[2px] w-16 bg-gradient-to-r from-blue-500 to-transparent"
+          />
         </motion.div>
 
         <div ref={timelineRef} className="relative">

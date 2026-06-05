@@ -11,6 +11,34 @@ body, html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Animated gradient text ── */
+.text-gradient {
+  background: linear-gradient(135deg, #93c5fd 0%, #c4b5fd 45%, #93c5fd 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer 4s linear infinite;
+}
+
+@keyframes text-shimmer {
+  to { background-position: 200% center; }
+}
+
+/* ── Gradient border card ── */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(124,58,237,0.1));
+  padding: 1px;
+  border-radius: 1rem;
+}
+
+.gradient-border-inner {
+  background: #0e0e18;
+  border-radius: calc(1rem - 1px);
+  height: 100%;
+}
+
 /* Star background (dark only) */
 @keyframes driftDown {
   from { transform: translateY(0); }
@@ -69,3 +97,19 @@ section {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.3); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(59, 130, 246, 0.5); }
+
+/* Accessibility: respect reduced motion preference for CSS animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-drift { animation: none !important; }
+  .animate-pulse { animation-duration: 3s !important; }
+  .rubik-spin    { animation: none !important; }
+}
+
+/* ── Rubik's cube rotation ── */
+@keyframes rubikSpin {
+  0%   { transform: rotateX(16deg) rotateY(0deg)   rotateZ(4deg);  }
+  25%  { transform: rotateX(20deg) rotateY(90deg)  rotateZ(-2deg); }
+  50%  { transform: rotateX(12deg) rotateY(180deg) rotateZ(5deg);  }
+  75%  { transform: rotateX(22deg) rotateY(270deg) rotateZ(0deg);  }
+  100% { transform: rotateX(16deg) rotateY(360deg) rotateZ(4deg);  }
+}

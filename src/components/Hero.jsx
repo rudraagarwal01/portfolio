@@ -11,8 +11,6 @@ const socials = [
   { Icon: FaAws,      size: 20, href: "https://www.credly.com/badges/1239a737-51c7-46bf-aa56-eed2c2a0ebb2/public_url", label: "AWS Certified", color: "#FF9900" },
 ];
 
-
-
 // ─── Animation helper ─────────────────────────────────────────────────────────
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 18 },
@@ -72,7 +70,6 @@ export default function Hero() {
       ref={heroRef}
       className="relative min-h-screen flex items-center pt-24 pb-16 px-6"
     >
-
       <div className="relative max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
 
         {/* ── Left: Text content ── */}
@@ -103,34 +100,21 @@ export default function Hero() {
             <span className="block text-[clamp(3.5rem,10vw,8rem)] text-gradient">Agarwal</span>
           </motion.h1>
 
-          {/* Role tags */}
-          <motion.div {...fadeUp(0.18)} className="flex flex-wrap gap-2 mb-6">
-            {["CS @ UMD", "Machine Learning", "SWE Intern"].map((tag) => (
-              <span
-                key={tag}
-                className="text-[10px] font-mono text-zinc-500 bg-white/4 border border-white/8 px-2.5 py-1 rounded-full"
-              >
-                {tag}
-              </span>
-            ))}
-          </motion.div>
+          {/* Role headline inline style */}
+          <motion.p 
+            {...fadeUp(0.18)} 
+            className="text-base md:text-lg text-zinc-400 font-medium tracking-tight mb-5"
+          >
+            Computer Science @ University of Maryland <span className="text-zinc-600 mx-2">·</span> AI & Software Engineering Enthusiast
+          </motion.p>
 
-          {/* Fannie Mae badge */}
+          {/* Fannie Mae badge — OPTIMIZED: Scaled layout and text size up to match Screenshot 2026-06-04 at 7.54.26 PM.png */}
           <motion.div {...fadeUp(0.24)} className="mb-7">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/8 border border-blue-500/20 text-[11px] font-mono font-semibold text-blue-400 tracking-wide">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-              Incoming SWE Intern @ Fannie Mae
+            <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-blue-500/8 border border-blue-500/20 text-sm font-mono font-semibold text-blue-400 tracking-wide">
+              <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+              SWE Intern @ Fannie Mae
             </span>
           </motion.div>
-
-          {/* Description */}
-          <motion.p
-            {...fadeUp(0.3)}
-            className="text-[15px] text-zinc-400 max-w-[420px] mb-9 leading-relaxed"
-          >
-            Building intelligent, scalable systems at the intersection of AI and
-            software engineering.
-          </motion.p>
 
           {/* Magnetic CTA buttons */}
           <motion.div {...fadeUp(0.36)} className="flex flex-wrap gap-3 mb-9">

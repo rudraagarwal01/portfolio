@@ -7,18 +7,10 @@ import {
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 
-function hexGlow(hex, alpha = 0.32) {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return `drop-shadow(0 0 8px rgba(${r},${g},${b},${alpha}))`;
-}
-
 // ─── Quadrant data ────────────────────────────────────────────────────────────
 const quadrants = [
   {
     id: "languages",
-    num: "01",
     label: "Core Languages",
     desc: "Primary programming languages",
     skills: [
@@ -31,93 +23,136 @@ const quadrants = [
   },
   {
     id: "ai-ml",
-    num: "02",
     label: "AI & Machine Learning",
     desc: "Models, frameworks & intelligent systems",
     skills: [
       { name: "PyTorch",     Icon: SiPytorch,     color: "#EE4C2C" },
       { name: "Neo4j",       Icon: SiNeo4J,       color: "#008CC1" },
-      { name: "OpenAI",      Icon: SiOpenai,      color: "#412991" },
+      { name: "OpenAI",      Icon: SiOpenai,      color: "#74aa9c" },
       { name: "HuggingFace", Icon: SiHuggingface, color: "#FFD21E" },
       { name: "FastAPI",     Icon: SiFastapi,     color: "#05998B" },
     ],
   },
   {
     id: "engineering",
-    num: "03",
     label: "Engineering & Cloud",
     desc: "Full-stack, cloud & DevOps tooling",
     skills: [
-      { name: "React",      Icon: SiReact,              color: "#61DAFB" },
-      { name: "AWS",        Icon: SiAmazonwebservices,  color: "#FF9900" },
-      { name: "Docker",     Icon: SiDocker,             color: "#2496ED" },
-      { name: "PostgreSQL", Icon: SiPostgresql,         color: "#4169E1" },
-      { name: "Git",        Icon: SiGit,                color: "#F05032" },
-      { name: "MongoDB",    Icon: SiMongodb,            color: "#47A248" },
+      { name: "React",      Icon: SiReact,             color: "#61DAFB" },
+      { name: "AWS",        Icon: SiAmazonwebservices, color: "#FF9900" },
+      { name: "Docker",     Icon: SiDocker,            color: "#2496ED" },
+      { name: "PostgreSQL", Icon: SiPostgresql,        color: "#4169E1" },
+      { name: "Git",        Icon: SiGit,               color: "#F05032" },
+      { name: "MongoDB",    Icon: SiMongodb,           color: "#47A248" },
     ],
   },
   {
     id: "security",
-    num: "04",
     label: "Security & Ethics",
     desc: "Risk management, privacy & AI ethics",
     skills: [
-      { name: "Risk Management", Icon: Shield, color: "#10B981" },
+      { name: "Risk Mgmt",       Icon: Shield, color: "#10B981" },
       { name: "Privacy",         Icon: EyeOff, color: "#A78BFA" },
-      { name: "AI Ethics",       Icon: Scale,  color: "#0EA5E9" },
-      { name: "Data Protection", Icon: Lock,   color: "#F97316" },
+      { name: "AI Ethics",       Icon: Scale,  color: "#38BDF8" },
+      { name: "Protection",      Icon: Lock,   color: "#FB923C" },
     ],
   },
 ];
 
-// ─── Pill ─────────────────────────────────────────────────────────────────────
-function Pill({ name, Icon, color }) {
+// ─── Skill icon with lift + glow hover ────────────────────────────────────────
+function SkillIcon({ name, Icon, color }) {
   return (
-    <motion.span
-      whileHover={{ scale: 1.06 }}
-      transition={{ type: "spring", stiffness: 400, damping: 22 }}
-      style={{ filter: hexGlow(color) }}
-      className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-[12px] font-mono cursor-default select-none bg-white/5 border border-white/8 hover:bg-white/10 transition-colors duration-200"
+    <motion.div
+      className="flex flex-col items-center gap-2.5 cursor-default"
+      whileHover="hover"
+      initial="rest"
     >
-      <Icon size={14} style={{ color }} className="flex-shrink-0" />
-      <span className="text-zinc-300">{name}</span>
-    </motion.span>
+      <motion.div
+        className="relative w-14 h-14 rounded-2xl flex items-center justify-center border"
+        style={{ backgroundColor: `${color}12`, borderColor: `${color}22` }}
+        variants={{
+          rest:  { y: 0, borderColor: `${color}22` },
+          hover: { y: -6, borderColor: `${color}55` },
+        }}
+        transition={{ type: "spring", stiffness: 380, damping: 22 }}
+      >
+        {/* Colour wash */}
+        <motion.div
+          className="absolute inset-0 rounded-2xl"
+          style={{ background: `radial-gradient(circle at 50% 60%, ${color}30, transparent 72%)` }}
+          variants={{ rest: { opacity: 0 }, hover: { opacity: 1 } }}
+          transition={{ duration: 0.2 }}
+        />
+        {/* Icon */}
+        <motion.div
+          variants={{
+            rest:  { filter: "drop-shadow(0 0 0px transparent)" },
+            hover: { filter: `drop-shadow(0 0 10px ${color}cc)` },
+          }}
+          transition={{ duration: 0.2 }}
+        >
+          <Icon size={26} style={{ color }} />
+        </motion.div>
+      </motion.div>
+
+      <motion.span
+        className="text-[11px] font-mono font-semibold uppercase tracking-wider text-center leading-tight max-w-[80px]"
+        variants={{
+          rest:  { color: "#f4f4f5" }, 
+          hover: { color: "#ffffff" }, 
+        }}
+        transition={{ duration: 0.15 }}
+      >
+        {name}
+      </motion.span>
+    </motion.div>
   );
 }
 
 // ─── Card ─────────────────────────────────────────────────────────────────────
 const cardVariants = {
-  hidden:  { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
+  hidden:   { opacity: 0, y: 24 },
+  visible:  { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
 function QuadrantCard({ q }) {
   return (
     <motion.div
       variants={cardVariants}
-      whileHover={{ scale: 1.015, boxShadow: "0 0 32px rgba(59,130,246,0.06)" }}
-      transition={{ type: "spring", stiffness: 280, damping: 28 }}
-      className="bg-[#141418] border border-white/5 rounded-2xl p-8 flex flex-col gap-6"
+      className="group relative rounded-2xl bg-[#0e0e18] border border-white/6 p-8 flex flex-col gap-8 hover:border-white/10 transition-colors duration-300 overflow-hidden"
     >
-      <div className="flex items-start justify-between">
+      {/* Subtle corner glow on hover */}
+      <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-blue-500/0 group-hover:bg-blue-500/5 blur-3xl transition-all duration-700 pointer-events-none" />
+
+      {/* Header — FIXED: Removed number badge structure */}
+      <div className="flex items-start">
         <div>
-          <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-1.5">
+          <p className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-1.5">
             {q.desc}
           </p>
           <h3 className="font-mono font-bold text-sm text-zinc-100 tracking-tight">
             {q.label}
           </h3>
         </div>
-        <span className="text-[11px] font-mono text-zinc-700 bg-white/4 border border-white/6 px-2 py-1 rounded-lg flex-shrink-0">
-          {q.num}
-        </span>
       </div>
 
-      <div className="flex flex-wrap gap-2.5">
+      {/* Icons grid */}
+      <motion.div
+        className="flex flex-wrap gap-5"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06, delayChildren: 0.12 } } }}
+      >
         {q.skills.map((s) => (
-          <Pill key={s.name} {...s} />
+          <motion.div
+            key={s.name}
+            variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { duration: 0.3 } } }}
+          >
+            <SkillIcon {...s} />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
@@ -141,6 +176,14 @@ export default function Skills() {
           <h2 className="font-mono font-bold text-3xl md:text-4xl text-zinc-50 tracking-tight uppercase">
             Skills
           </h2>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{ originX: 0 }}
+            className="mt-3 h-[2px] w-16 bg-gradient-to-r from-blue-500 to-transparent"
+          />
         </motion.div>
 
         <motion.div

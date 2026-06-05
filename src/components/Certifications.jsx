@@ -179,8 +179,16 @@ export default function Certifications() {
             Credentials
           </p>
           <h2 className="font-mono font-bold text-3xl md:text-4xl text-slate-900 dark:text-zinc-50 tracking-tight">
-            Certifications
+            CERTIFICATIONS
           </h2>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{ originX: 0 }}
+            className="mt-3 h-[2px] w-16 bg-gradient-to-r from-blue-500 to-transparent"
+          />
         </motion.div>
 
         {/* Stacked full-width cards */}
