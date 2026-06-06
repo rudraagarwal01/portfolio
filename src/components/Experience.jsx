@@ -14,15 +14,19 @@ const jobs = [
     title: "Software Engineering Intern",
     company: "Fannie Mae",
     location: "Washington, D.C.",
-    date: "Jun 2026 – Aug 2026",
+    date: "May 2026 – Aug 2026",
     logo: "fanniemae.png",
     incoming: true,
-    points: [],
+    points: [
+      <>Prototyping a document intake workflow for <M>ECM platforms</M> (SharePoint, Box) using Textract, IDR, and OCR</>,
+      <>Automating repeatable <M>EC2 rehydration</M> with Terraform runbooks to configure server and client components</>,
+      <>Building a reusable <M>prompt library</M> across Box and CARA AI for document chat, summarization, and comparison</>,
+    ],
     tech: [
       { Icon: FaJava,              color: "#ED8B00" },
       { Icon: SiAmazonwebservices, color: "#FF9900" },
     ],
-    statusBar: "STATUS: INCOMING | TERM: SUMMER 2026 | LOC: Washington, D.C.",
+    statusBar: "STATUS: ACTIVE | ECM: SHAREPOINT/BOX | STACK: AWS·TERRAFORM",
   },
   {
     title: "IT Technician",
@@ -151,7 +155,7 @@ function ExperienceCard({ job, i }) {
         </div>
 
         {/* Body */}
-        {job.incoming ? (
+        {job.incoming && job.points.length === 0 ? (
           <p className="text-sm text-blue-400/60 italic">
             Software Engineering Intern at Fannie Mae, working on intelligent document processing. I'm combining AWS Textract OCR with Amazon Bedrock foundation models to extract and structure data from complex documents, along with the serverless cloud infrastructure (Lambda, S3) that runs it at scale.
           </p>

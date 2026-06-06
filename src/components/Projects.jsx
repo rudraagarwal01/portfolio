@@ -3,6 +3,15 @@ import { ArrowUpRight } from "lucide-react";
 
 const PROJECTS_DATA = [
   {
+    title: "DocFlow",
+    desc: "Automated document intake and classification pipeline simulating AWS Tools",
+    primaryMetric: "Auto-Classified",
+    tech: ["AWS Textract", "Bedrock", "pytest"],
+    link: "https://github.com/rudraagarwal01/DocFlow",
+    type: "Featured",
+    statusColor: "bg-violet-500"
+  },
+  {
     title: "AI EchoMail",
     desc: "Automated drafting engine with HuggingFace safety moderation.",
     primaryMetric: "-60% Draft Time",
