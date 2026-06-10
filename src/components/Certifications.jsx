@@ -1,213 +1,208 @@
-import { useRef, useState } from "react";
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Lock } from "lucide-react";
+
+// Pointy-top hexagon — proportions tuned for a regular hex (112 × 130)
+const HEX = "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)";
 
 const certs = [
   {
+    title: "AWS Certified Cloud Practitioner",
     issuer: "Amazon Web Services",
-    name: "AWS Certified Cloud Practitioner",
     date: "February 2026",
     status: "verified",
     credentialId: "7d7602ea91744d4d9fe8fed4b6935d1d",
-    url: "https://www.credly.com/badges/1239a737-51c7-46bf-aa56-eed2c2a0ebb2/public_url",
-    logo: "aws.svg",
-    statusBar: "ISSUER: AWS | LEVEL: FOUNDATIONAL | VALID: 2026–2029",
+    imageSrc: "/logos/aws.svg",
+    credentialLink: "https://www.credly.com/badges/1239a737-51c7-46bf-aa56-eed2c2a0ebb2/public_url",
+    gradient: "from-amber-500/70 via-orange-400/40 to-yellow-400/70",
   },
   {
+    title: "Google AI Essentials",
     issuer: "Google",
-    name: "Google AI Essentials",
     date: "June 2026",
     status: "verified",
     credentialId: "3e2fc95cd63a412fb23e345e0d120d59",
-    url: "https://www.credly.com/badges/3e2fc95c-d63a-412f-b23e-345e0d120d59/public_url",
-    logo: "google.svg",
-    statusBar: "ISSUER: GOOGLE | TRACK: AI ESSENTIALS | VERIFIED: CREDLY",
+    imageSrc: "/logos/google.svg",
+    credentialLink: "https://www.credly.com/badges/3e2fc95c-d63a-412f-b23e-345e0d120d59/public_url",
+    gradient: "from-blue-500/70 via-cyan-400/40 to-teal-400/70",
   },
   {
+    title: "EA Software Engineering Simulation",
     issuer: "EA | via Forage",
-    name: "EA Software Engineering Job Simulation",
     date: "January 2025",
     status: "verified",
     credentialId: "MkGzM7E3fgrPsBR7b",
-    url: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/j43dGscQHtJJ57N54/a77WE3de8qrxWferQ_j43dGscQHtJJ57N54_MkGzM7E3fgrPsBR7b_1737178148243_completion_certificate.pdf",
-    logo: "ea.svg",
-    statusBar: "ISSUER: FORAGE × EA | TRACK: SOFTWARE ENGINEERING | SIMULATION",
+    imageSrc: "/logos/ea.svg",
+    credentialLink: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/j43dGscQHtJJ57N54/a77WE3de8qrxWferQ_j43dGscQHtJJ57N54_MkGzM7E3fgrPsBR7b_1737178148243_completion_certificate.pdf",
+    gradient: "from-violet-500/70 via-indigo-400/40 to-blue-500/70",
   },
   {
+    title: "AWS Certified AI Practitioner",
     issuer: "Amazon Web Services",
-    name: "AWS Certified AI Practitioner",
     date: "Expected 2026",
     status: "in-progress",
+    imageSrc: "/logos/aws.svg",
+    credentialLink: null,
     focusAreas: ["Generative AI", "Foundational Models", "AWS Bedrock"],
-    logo: "aws.svg",
-    statusBar: "ISSUER: AWS | LEVEL: FOUNDATIONAL | STATUS: IN PROGRESS",
+    gradient: "from-zinc-600/50 via-zinc-500/30 to-zinc-600/50",
   },
 ];
 
-function CertCard({ cert, i }) {
-  const cardRef  = useRef(null);
-  const [hovered, setHovered] = useState(false);
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+const itemVariants = {
+  hidden:  { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
+};
 
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [7, -7]), { stiffness: 400, damping: 30 });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-7, 7]), { stiffness: 400, damping: 30 });
-
-  const shimmerPos = useTransform(mouseX, [-0.5, 0.5], ["-60%", "160%"]);
-  const shimmerGradient = useTransform(
-    shimmerPos,
-    (x) =>
-      `linear-gradient(105deg, transparent calc(${x} - 20%), rgba(59,130,246,0.10) ${x}, rgba(139,92,246,0.07) calc(${x} + 12%), rgba(6,182,212,0.08) calc(${x} + 24%), transparent calc(${x} + 44%))`
+// ─── Hexagonal badge ──────────────────────────────────────────────────────────
+function HexBadge({ imageSrc, gradient, dimmed }) {
+  return (
+    <div
+      className="relative mx-auto flex items-center justify-center"
+      style={{ width: 112, height: 130 }}
+    >
+      {/* Gradient shell */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${gradient}`}
+        style={{ clipPath: HEX }}
+      />
+      {/* Dark inner hexagon — creates the "border" */}
+      <div
+        className="absolute bg-[#0d0d10]"
+        style={{ clipPath: HEX, top: 3, right: 3, bottom: 3, left: 3 }}
+      />
+      {/* Logo */}
+      <img
+        src={imageSrc}
+        alt=""
+        className={`relative z-10 w-12 h-12 object-contain ${dimmed ? "opacity-35 grayscale" : ""}`}
+      />
+      {dimmed && (
+        <Lock
+          size={13}
+          className="absolute z-20 bottom-[26px] right-[20px] text-amber-400/80"
+        />
+      )}
+    </div>
   );
+}
 
-  const handleMouseMove = (e) => {
-    const rect = cardRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    mouseX.set((e.clientX - rect.left) / rect.width  - 0.5);
-    mouseY.set((e.clientY - rect.top)  / rect.height - 0.5);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-    setHovered(false);
-  };
-
+// ─── Badge card ───────────────────────────────────────────────────────────────
+function CertBadge({ cert }) {
   const isVerified   = cert.status === "verified";
   const isInProgress = cert.status === "in-progress";
 
-  const cardBody = (
-    <div style={{ perspective: "1200px" }}>
-      <motion.div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={handleMouseLeave}
-        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        whileHover={{ y: -2 }}
-        transition={{ duration: 0.2 }}
-        className="relative group rounded-2xl overflow-hidden backdrop-blur-md border border-white/5 hover:border-white/20 bg-[#141418]/60 transition-colors duration-300 hover:shadow-[0_20px_60px_rgba(0,0,0,0.55)]"
-      >
-        {/* Holographic shimmer overlay */}
-        <motion.div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-2xl z-10"
-          animate={{ opacity: hovered ? 1 : 0 }}
-          transition={{ duration: 0.2 }}
-          style={{ background: shimmerGradient }}
-        />
+  const card = (
+    <motion.div
+      variants={itemVariants}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: "spring", stiffness: 300, damping: 22 }}
+      className={`group flex flex-col items-center text-center gap-5 p-6 rounded-2xl border transition-colors duration-300
+        ${isVerified
+          ? "bg-[#141418]/70 border-white/6 hover:border-white/18 cursor-pointer"
+          : "bg-[#141418]/40 border-white/5 opacity-70"
+        }`}
+    >
+      <HexBadge
+        imageSrc={cert.imageSrc}
+        gradient={cert.gradient}
+        dimmed={isInProgress}
+      />
 
-        <div className="p-6 md:p-7">
-          <div className="flex items-start justify-between gap-4 flex-wrap">
-            <div className="flex items-center gap-3.5 min-w-0">
+      {/* Text */}
+      <div className="space-y-1.5 w-full">
+        <h3 className="font-mono font-bold text-sm text-zinc-100 leading-snug">
+          {cert.title}
+        </h3>
+        <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.18em]">
+          {cert.issuer}
+        </p>
+        <p className="text-[10px] font-mono text-zinc-600">
+          {isVerified ? "Issued" : "Target:"} {cert.date}
+        </p>
+      </div>
 
-              {/* Logo with glow ring */}
-              <motion.div
-                className="flex-shrink-0"
-                whileHover={{
-                  boxShadow: "0 0 0 2px rgba(59,130,246,0.45), 0 0 22px rgba(59,130,246,0.18)",
-                }}
-                transition={{ duration: 0.2 }}
-                style={{ borderRadius: "0.75rem" }}
-              >
-                <img
-                  src={`/logos/${cert.logo}`}
-                  alt={`${cert.issuer} logo`}
-                  className="w-14 h-14 rounded-xl border border-white/8 object-contain p-2 bg-[#1e1e24]"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.nextSibling.style.display = "flex";
-                  }}
-                />
-                <div
-                  style={{ display: "none" }}
-                  className="w-14 h-14 rounded-xl border border-white/8 bg-[#1e1e24] items-center justify-center text-blue-400 font-bold text-sm"
-                >
-                  {cert.issuer.charAt(0)}
-                </div>
-              </motion.div>
+      {/* Status + meta */}
+      <div className="flex flex-col items-center gap-2 w-full">
+        {isVerified && (
+          <>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[9px] font-mono font-bold text-emerald-400 uppercase tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Verified
+            </span>
+            <span className="flex items-center gap-1 text-[9px] font-mono text-zinc-700 group-hover:text-blue-400 transition-colors duration-200">
+              View Credential <ArrowUpRight size={10} />
+            </span>
+          </>
+        )}
 
-              <div className="min-w-0">
-                <p className="text-[10px] font-mono text-zinc-500 tracking-[0.2em] uppercase mb-0.5">
-                  {cert.issuer}
-                </p>
-                <h3 className="text-sm font-bold text-zinc-100 font-mono leading-snug">
-                  {cert.name}
-                </h3>
-                <p className="text-xs text-zinc-500 mt-0.5 font-mono">
-                  {isVerified ? "Issued" : "Target:"} {cert.date}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2 flex-shrink-0">
-              {isVerified && (
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[9px] font-mono font-bold text-emerald-400 uppercase tracking-widest">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Verified
-                </span>
-              )}
-              {isInProgress && (
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-[9px] font-mono font-bold text-amber-400 uppercase tracking-widest">
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                  In Progress
-                </span>
-              )}
-            </div>
-          </div>
-
-          {isInProgress && cert.focusAreas && (
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              {cert.focusAreas.map((area) => (
+        {isInProgress && (
+          <>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-[9px] font-mono font-bold text-amber-400 uppercase tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+              In Progress
+            </span>
+            <div className="flex flex-wrap justify-center gap-1">
+              {cert.focusAreas?.map((area) => (
                 <span
                   key={area}
-                  className="text-[9px] font-mono text-zinc-500 bg-white/5 border border-white/10 px-1.5 py-0.5 rounded uppercase"
+                  className="text-[8px] font-mono text-zinc-600 bg-white/4 border border-white/8 px-1.5 py-0.5 rounded uppercase"
                 >
                   {area}
                 </span>
               ))}
             </div>
-          )}
-        </div>
-
-        {/* Status bar */}
-        <div className="px-5 py-2.5 bg-black/40 border-t border-white/5 flex items-center gap-2.5 transition-all duration-300 group-hover:bg-blue-500/8 group-hover:shadow-[inset_0_1px_0_rgba(59,130,246,0.25)]">
-          <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${isVerified ? "bg-emerald-500 animate-pulse" : "bg-amber-500 animate-pulse"}`} />
-          <span className="text-[9px] font-mono text-zinc-600 uppercase tracking-widest truncate group-hover:text-zinc-400 transition-colors duration-300">
-            {cert.statusBar}
-          </span>
-          {isVerified && (
-            <ArrowUpRight size={12} className="ml-auto text-zinc-700 group-hover:text-blue-400 transition-colors flex-shrink-0" />
-          )}
-        </div>
-      </motion.div>
-    </div>
+          </>
+        )}
+      </div>
+    </motion.div>
   );
 
-  const motionProps = {
-    initial: { opacity: 0, x: -24 },
-    whileInView: { opacity: 1, x: 0 },
-    viewport: { once: true, margin: "-60px" },
-    transition: { duration: 0.5, delay: i * 0.04, ease: [0.25, 0.46, 0.45, 0.94] },
-  };
-
-  if (isVerified) {
+  if (isVerified && cert.credentialLink) {
     return (
       <motion.a
-        href={cert.url}
+        href={cert.credentialLink}
         target="_blank"
         rel="noopener noreferrer"
-        {...motionProps}
+        variants={itemVariants}
       >
-        {cardBody}
+        {/* Re-wrap so whileHover/whileTap stay on the inner div */}
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 300, damping: 22 }}
+          className="group flex flex-col items-center text-center gap-5 p-6 rounded-2xl border border-white/6 hover:border-white/18 bg-[#141418]/70 transition-colors duration-300 cursor-pointer h-full"
+        >
+          <HexBadge imageSrc={cert.imageSrc} gradient={cert.gradient} dimmed={false} />
+
+          <div className="space-y-1.5 w-full">
+            <h3 className="font-mono font-bold text-sm text-zinc-100 leading-snug">{cert.title}</h3>
+            <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.18em]">{cert.issuer}</p>
+            <p className="text-[10px] font-mono text-zinc-600">Issued {cert.date}</p>
+          </div>
+
+          <div className="flex flex-col items-center gap-2 w-full">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[9px] font-mono font-bold text-emerald-400 uppercase tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Verified
+            </span>
+            <span className="flex items-center gap-1 text-[9px] font-mono text-zinc-700 group-hover:text-blue-400 transition-colors duration-200">
+              View Credential <ArrowUpRight size={10} />
+            </span>
+          </div>
+        </motion.div>
       </motion.a>
     );
   }
 
-  return <motion.div {...motionProps}>{cardBody}</motion.div>;
+  return card;
 }
 
+// ─── Section ──────────────────────────────────────────────────────────────────
 export default function Certifications() {
   return (
     <section id="certifications" className="py-24 px-6">
@@ -236,11 +231,18 @@ export default function Certifications() {
           />
         </motion.div>
 
-        <div className="flex flex-col gap-4">
-          {certs.map((cert, i) => (
-            <CertCard key={cert.name} cert={cert} i={i} />
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {certs.map((cert) => (
+            <CertBadge key={cert.title} cert={cert} />
           ))}
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );
