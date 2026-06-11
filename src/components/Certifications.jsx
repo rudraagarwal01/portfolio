@@ -127,10 +127,15 @@ function CertBadge({ cert }) {
         )}
 
         {isInProgress && (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-[9px] font-mono font-bold text-amber-400 uppercase tracking-widest">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-            In Progress
-          </span>
+          <>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-[9px] font-mono font-bold text-amber-400 uppercase tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+              In Progress
+            </span>
+            <span className="text-[9px] font-mono text-zinc-700 uppercase tracking-widest">
+              Generative AI
+            </span>
+          </>
         )}
       </div>
     </motion.div>
