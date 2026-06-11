@@ -127,22 +127,10 @@ function CertBadge({ cert }) {
         )}
 
         {isInProgress && (
-          <>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-[9px] font-mono font-bold text-amber-400 uppercase tracking-widest">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-              In Progress
-            </span>
-            <div className="flex flex-wrap justify-center gap-1">
-              {cert.focusAreas?.map((area) => (
-                <span
-                  key={area}
-                  className="text-[8px] font-mono text-zinc-600 bg-white/4 border border-white/8 px-1.5 py-0.5 rounded uppercase"
-                >
-                  {area}
-                </span>
-              ))}
-            </div>
-          </>
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-[9px] font-mono font-bold text-amber-400 uppercase tracking-widest">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+            In Progress
+          </span>
         )}
       </div>
     </motion.div>
