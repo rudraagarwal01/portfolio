@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Lock } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 // Pointy-top hexagon — proportions tuned for a regular hex (112 × 130)
 const HEX = "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)";
@@ -11,17 +11,17 @@ const certs = [
     date: "February 2026",
     status: "verified",
     credentialId: "7d7602ea91744d4d9fe8fed4b6935d1d",
-    imageSrc: "/logos/aws.svg",
+    imageSrc: "/logos/aws.png",
     credentialLink: "https://www.credly.com/badges/1239a737-51c7-46bf-aa56-eed2c2a0ebb2/public_url",
     gradient: "from-amber-500/70 via-orange-400/40 to-yellow-400/70",
   },
   {
-    title: "Google AI Essentials",
+    title: "Google AI Essentials Certificate",
     issuer: "Google",
     date: "June 2026",
     status: "verified",
     credentialId: "3e2fc95cd63a412fb23e345e0d120d59",
-    imageSrc: "/logos/google.svg",
+    imageSrc: "/logos/google.png",
     credentialLink: "https://www.credly.com/badges/3e2fc95c-d63a-412f-b23e-345e0d120d59/public_url",
     gradient: "from-blue-500/70 via-cyan-400/40 to-teal-400/70",
   },
@@ -31,7 +31,7 @@ const certs = [
     date: "January 2025",
     status: "verified",
     credentialId: "MkGzM7E3fgrPsBR7b",
-    imageSrc: "/logos/ea.svg",
+    imageSrc: "/logos/ea.png",
     credentialLink: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/j43dGscQHtJJ57N54/a77WE3de8qrxWferQ_j43dGscQHtJJ57N54_MkGzM7E3fgrPsBR7b_1737178148243_completion_certificate.pdf",
     gradient: "from-violet-500/70 via-indigo-400/40 to-blue-500/70",
   },
@@ -40,10 +40,10 @@ const certs = [
     issuer: "Amazon Web Services",
     date: "Expected 2026",
     status: "in-progress",
-    imageSrc: "/logos/aws.svg",
+    imageSrc: "/logos/aws.png",
     credentialLink: null,
     focusAreas: ["Generative AI", "Foundational Models", "AWS Bedrock"],
-    gradient: "from-zinc-600/50 via-zinc-500/30 to-zinc-600/50",
+    gradient: "from-amber-500/70 via-orange-400/40 to-yellow-400/70",
   },
 ];
 
@@ -58,7 +58,7 @@ const itemVariants = {
 };
 
 // ─── Hexagonal badge ──────────────────────────────────────────────────────────
-function HexBadge({ imageSrc, gradient, dimmed }) {
+function HexBadge({ imageSrc, gradient }) {
   return (
     <div
       className="relative mx-auto flex items-center justify-center"
@@ -78,14 +78,8 @@ function HexBadge({ imageSrc, gradient, dimmed }) {
       <img
         src={imageSrc}
         alt=""
-        className={`relative z-10 w-12 h-12 object-contain ${dimmed ? "opacity-35 grayscale" : ""}`}
+        className="relative z-10 w-12 h-12 object-contain"
       />
-      {dimmed && (
-        <Lock
-          size={13}
-          className="absolute z-20 bottom-[26px] right-[20px] text-amber-400/80"
-        />
-      )}
     </div>
   );
 }
@@ -101,17 +95,9 @@ function CertBadge({ cert }) {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
-      className={`group flex flex-col items-center text-center gap-5 p-6 rounded-2xl border transition-colors duration-300
-        ${isVerified
-          ? "bg-[#141418]/70 border-white/6 hover:border-white/18 cursor-pointer"
-          : "bg-[#141418]/40 border-white/5 opacity-70"
-        }`}
+      className="group flex flex-col items-center text-center gap-5 p-6 rounded-2xl border border-white/6 bg-[#141418]/70 transition-colors duration-300"
     >
-      <HexBadge
-        imageSrc={cert.imageSrc}
-        gradient={cert.gradient}
-        dimmed={isInProgress}
-      />
+      <HexBadge imageSrc={cert.imageSrc} gradient={cert.gradient} />
 
       {/* Text */}
       <div className="space-y-1.5 w-full">
@@ -177,7 +163,7 @@ function CertBadge({ cert }) {
           transition={{ type: "spring", stiffness: 300, damping: 22 }}
           className="group flex flex-col items-center text-center gap-5 p-6 rounded-2xl border border-white/6 hover:border-white/18 bg-[#141418]/70 transition-colors duration-300 cursor-pointer h-full"
         >
-          <HexBadge imageSrc={cert.imageSrc} gradient={cert.gradient} dimmed={false} />
+          <HexBadge imageSrc={cert.imageSrc} gradient={cert.gradient} />
 
           <div className="space-y-1.5 w-full">
             <h3 className="font-mono font-bold text-sm text-zinc-100 leading-snug">{cert.title}</h3>
