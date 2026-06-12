@@ -16,6 +16,16 @@ const certs = [
     gradient: "from-amber-500/70 via-orange-400/40 to-yellow-400/70",
   },
   {
+    title: "Google AI Professional Certificate",
+    issuer: "Google",
+    date: "June 2026",
+    status: "verified",
+    credentialId: "46ca3b6736b34e7c8f7a68d268926ea2",
+    imageSrc: "/logos/google.png",
+    credentialLink: "https://www.credly.com/badges/46ca3b67-36b3-4e7c-8f7a-68d268926ea2/public_url",
+    gradient: "from-red-500/70 via-yellow-400/40 to-green-400/70",
+  },
+  {
     title: "Google AI Essentials Certificate",
     issuer: "Google",
     date: "June 2026",
