@@ -11,22 +11,23 @@ const M = ({ children }) => (
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const jobs = [
   {
-    title: "Software Engineering Intern",
+    title: "Software Engineering Intern – Technology Internship Program (TIP)",
     company: "Fannie Mae",
     location: "Washington, D.C.",
     date: "May 2026 – Aug 2026",
     logo: "fanniemae.png",
     incoming: true,
     points: [
-      <>Prototyping a document intake workflow for <M>ECM platforms</M> (SharePoint, Box) using Textract, IDR, and OCR</>,
-      <>Automating repeatable <M>EC2 rehydration</M> with Terraform runbooks to configure server and client components</>,
-      <>Building a reusable <M>prompt library</M> across Box and CARA AI for document chat, summarization, and comparison</>,
+      <>Architected a unified <M>React/FastAPI AI gateway</M> abstracting 5 standalone platforms, scaled division-wide via a strategic corporate mandate</>,
+      <>Orchestrated <M>Claude 4.5 via AWS Bedrock</M> utilizing Pydantic data schemas to secure strict, type-safe JSON contracts across 8 production routes</>,
+      <>Built a cloud-native testing interface using <M>ipywidgets and AWS SageMaker</M> to accelerate pipeline inference verification cycles</>,
     ],
     tech: [
-      { Icon: FaJava,              color: "#ED8B00" },
+      { Icon: SiReact,             color: "#61DAFB" },
+      { Icon: SiFastapi,           color: "#05998B" },
       { Icon: SiAmazonwebservices, color: "#FF9900" },
     ],
-    statusBar: "STATUS: ACTIVE | ECM: SHAREPOINT/BOX | STACK: AWS·TERRAFORM",
+    statusBar: "METRICS: 8 ACTIVE ROUTES | AI LAYER: CLAUDE 4.5 & SAGEMAKER | INFRA: DIVISION-WIDE",
   },
   {
     title: "IT Technician",
@@ -147,7 +148,6 @@ function ExperienceCard({ job, i }) {
                 Current
               </span>
             )}
-            {/* OPTIMIZED: Removed background, border, and padding classes to let text sit cleanly */}
             <span className="text-xs font-mono font-medium text-zinc-400 whitespace-nowrap">
               {job.date}
             </span>
