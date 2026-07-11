@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { FaGithub, FaLinkedin, FaAws } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import HeroRubiksCube from "./HeroRubiksCube";
@@ -19,8 +20,9 @@ const fadeUp = (delay = 0) => ({
 });
 
 // ─── Magnetic button ──────────────────────────────────────────────────────────
-function MagneticButton({ href, children, primary = false, external = false }) {
+function MagneticButton({ to, href, children, primary = false, external = false }) {
   const ref = useRef(null);
+  const navigate = useNavigate();
   const [pos, setPos] = useState({ x: 0, y: 0 });
 
   const onMove = (e) => {
@@ -33,10 +35,18 @@ function MagneticButton({ href, children, primary = false, external = false }) {
     });
   };
 
+  const handleClick = (e) => {
+    if (to) {
+      e.preventDefault();
+      navigate(to);
+    }
+  };
+
   return (
     <motion.a
       ref={ref}
-      href={href}
+      href={external ? href : to}
+      onClick={handleClick}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
       onMouseMove={onMove}
@@ -68,7 +78,8 @@ export default function Hero() {
     <section
       id="home"
       ref={heroRef}
-      className="relative min-h-screen flex items-center pt-24 pb-16 px-6"
+      // REMOVED pt-24, KEPT pb-16
+      className="relative min-h-screen flex items-center pb-4 px-6"
     >
       <div className="relative max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
 
@@ -118,8 +129,9 @@ export default function Hero() {
 
           {/* Magnetic CTA buttons */}
           <motion.div {...fadeUp(0.36)} className="flex flex-wrap gap-3 mb-9">
-            <MagneticButton href="#projects" primary>Explore My Work</MagneticButton>
-            <MagneticButton href="#contact">Get in Touch</MagneticButton>
+            {/* Swapped href for 'to' for React Router */}
+            <MagneticButton to="/projects" primary>Explore My Work</MagneticButton>
+            <MagneticButton to="/contact">Get in Touch</MagneticButton>
           </motion.div>
 
           {/* Social dock */}
@@ -166,7 +178,6 @@ export default function Hero() {
           <HeroRubiksCube />
         </motion.div>
       </div>
-
 
     </section>
   );
