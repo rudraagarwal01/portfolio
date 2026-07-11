@@ -213,7 +213,7 @@ export default function Experience() {
   const glowTop    = useTransform(lineScaleY, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="experience" className="py-24 px-6">
+    <section id="experience" className="px-6 pb-24">
       <div className="max-w-6xl mx-auto">
 
         <motion.div

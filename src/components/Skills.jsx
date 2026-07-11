@@ -160,7 +160,7 @@ function QuadrantCard({ q }) {
 // ─── Section ──────────────────────────────────────────────────────────────────
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-6">
+    <section id="skills" className="px-6 pb-24">
       <div className="max-w-6xl mx-auto">
 
         <motion.div

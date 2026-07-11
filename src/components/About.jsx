@@ -15,7 +15,7 @@ const Blue  = ({ children }) => <span className="text-blue-600 dark:text-blue-40
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-6">
+    <section id="about" className="px-6 pb-24">
       <div className="max-w-6xl mx-auto">
 
         {/* Section header */}

@@ -61,7 +61,7 @@ const rowVariants = {
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 px-6">
+    <section id="projects" className="px-6 pb-24">
       <div className="max-w-6xl mx-auto">
         
         {/* Section Header */}

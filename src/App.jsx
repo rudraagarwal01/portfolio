@@ -1,20 +1,24 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Experience from "./components/Experience";
-import Certifications from "./components/Certifications";
-import Projects from "./components/Projects";
-import Skills from "./components/Skills";
-import Leadership from "./components/Leadership";
-import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import ScrollProgress from "./components/ScrollProgress";
 import StarBackground from "./components/StarBackground";
-import { motion } from "framer-motion";
+import ScrollProgress from "./components/ScrollProgress";
+import CommandPalette from "./components/CommandPalette";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Experience from "./pages/Experience";
+import Certifications from "./pages/Certifications";
+import Projects from "./pages/Projects";
+import Skills from "./pages/Skills";
+import Leadership from "./pages/Leadership";
+import Contact from "./pages/Contact";
 import "./App.css";
 
-export default function App() {
+function AppShell() {
+  const location = useLocation();
+  const [paletteOpen, setPaletteOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [scrollBarVisible, setScrollBarVisible] = useState(false);
   const [cursor, setCursor] = useState({ x: -1000, y: -1000 });
@@ -23,15 +27,29 @@ export default function App() {
   const thumbRef = useRef(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setPaletteOpen((v) => !v);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       const total =
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
-      const pct = (document.documentElement.scrollTop / total) * 100;
+      const pct = total > 0 ? (document.documentElement.scrollTop / total) * 100 : 0;
 
-      // Update thumb position directly — bypasses React render cycle, zero lag
       if (thumbRef.current) {
-        thumbRef.current.style.top       = `${pct}%`;
+        thumbRef.current.style.top = `${pct}%`;
         thumbRef.current.style.transform = `translateY(-${pct}%)`;
       }
 
@@ -40,6 +58,7 @@ export default function App() {
       clearTimeout(hideTimerRef.current);
       hideTimerRef.current = setTimeout(() => setScrollBarVisible(false), 1500);
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -66,11 +85,9 @@ export default function App() {
       <StarBackground />
       <div className="tech-grid" />
 
-      {/* Ambient gradient orbs */}
       <div className="fixed top-[-20vh] right-[-10vw] w-[55vw] h-[55vw] max-w-[680px] max-h-[680px] rounded-full bg-blue-600/[0.07] blur-[110px] pointer-events-none z-[1]" />
       <div className="fixed bottom-[5vh] left-[-12vw] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] rounded-full bg-violet-700/[0.07] blur-[110px] pointer-events-none z-[1]" />
 
-      {/* Cursor spotlight — blue+violet blend */}
       <div
         className="fixed inset-0 z-[2] pointer-events-none"
         style={{
@@ -79,27 +96,26 @@ export default function App() {
       />
 
       <ScrollProgress progress={scrollProgress} />
-      <Navbar />
+      <Navbar onOpenPalette={() => setPaletteOpen(true)} />
+      <CommandPalette isOpen={paletteOpen} onClose={() => setPaletteOpen(false)} />
 
-      <motion.main
-        className="relative z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.35 }}
-      >
-        <section id="home"><Hero /></section>
-        <section id="about"><About /></section>
-        <section id="experience"><Experience /></section>
-        <section id="certifications"><Certifications /></section>
-        <section id="projects"><Projects /></section>
-        <section id="skills"><Skills /></section>
-        <section id="leadership"><Leadership /></section>
-        <section id="contact"><Contact /></section>
-      </motion.main>
+      <main className="pt-32 pb-16 min-h-screen relative z-10">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/certifications" element={<Certifications />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/leadership" element={<Leadership />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </AnimatePresence>
+      </main>
 
       <Footer />
 
-      {/* Disappearing scroll indicator */}
       <div
         className="fixed right-2 top-3 bottom-3 z-50 w-[5px] pointer-events-none transition-opacity duration-500"
         style={{ opacity: scrollBarVisible ? 1 : 0 }}
@@ -112,5 +128,13 @@ export default function App() {
         />
       </div>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppShell />
+    </BrowserRouter>
   );
 }

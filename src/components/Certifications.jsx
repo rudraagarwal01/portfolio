@@ -194,7 +194,7 @@ function CertBadge({ cert }) {
 // ─── Section ──────────────────────────────────────────────────────────────────
 export default function Certifications() {
   return (
-    <section id="certifications" className="py-24 px-6">
+    <section id="certifications" className="px-6 pb-24">
       <div className="max-w-6xl mx-auto">
 
         <motion.div

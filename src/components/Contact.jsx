@@ -142,7 +142,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-16 px-6">
+    <section id="contact" className="px-6">
       <div className="max-w-5xl mx-auto">
 
         {/* Section header */}
