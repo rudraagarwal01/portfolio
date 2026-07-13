@@ -18,6 +18,7 @@ import "./App.css";
 
 function AppShell() {
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [scrollBarVisible, setScrollBarVisible] = useState(false);
@@ -99,7 +100,11 @@ function AppShell() {
       <Navbar onOpenPalette={() => setPaletteOpen(true)} />
       <CommandPalette isOpen={paletteOpen} onClose={() => setPaletteOpen(false)} />
 
-      <main className="pt-32 pb-16 min-h-screen relative z-10">
+      <main
+        className={`${
+          isHomePage ? "pt-20" : "pt-32"
+        } pb-16 min-h-screen relative z-10`}
+      >
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />

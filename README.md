@@ -1,6 +1,6 @@
 # Rudra Agarwal — Personal Portfolio
 
-A high-performance personal portfolio built with React, Tailwind CSS, and Framer Motion. Designed with a dark, engineering-forward aesthetic featuring animated timelines, glassmorphism UI, and a fully functional contact form.
+A modern, interactive portfolio built with React, Tailwind CSS, and Framer Motion. It combines a dark, engineering-inspired visual style with fast page transitions, motion-rich sections, and a recruiter-friendly content flow.
 
 **Live site:** [rudraagarwal.dev](https://rudra-agarwal.com)
 
@@ -8,12 +8,22 @@ A high-performance personal portfolio built with React, Tailwind CSS, and Framer
 
 ## Table of Contents
 
+- [Overview](#overview)
 - [Tech Stack](#tech-stack)
 - [Features](#features)
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
 - [Environment & Configuration](#environment--configuration)
 - [Deployment](#deployment)
+
+---
+
+## Overview
+
+This project is a multi-page portfolio experience focused on clarity, performance, and visual polish.  
+It highlights professional experience, projects, skills, certifications, leadership, and contact in dedicated routes, while keeping navigation and interactions consistent across the app.
+
+The UI is intentionally built to feel technical and immersive: animated background layers, subtle depth effects, contextual motion, and compact data-dense cards. The result is a portfolio that reads quickly for recruiters while still showcasing front-end engineering depth.
 
 ---
 
@@ -32,60 +42,32 @@ A high-performance personal portfolio built with React, Tailwind CSS, and Framer
 
 ## Features
 
-### Global UI
-- **Star Background** — 600 procedurally drifting/twinkling stars with 8 animated shooting stars
-- **Tech Grid Overlay** — fixed CSS grid at 4% opacity for a subtle engineering aesthetic
-- **Cursor Spotlight** — radial gradient that follows the mouse, highlighting content on hover
-- **Custom Scroll Indicator** — disappearing right-side scroll thumb with zero-lag direct DOM updates
-- **Scroll Progress Bar** — 1px blue-to-purple gradient bar fixed at the top of the viewport
-- **Command Palette** — `⌘K` / `Ctrl+K` global shortcut opens a searchable jump menu
+### Core Experience
+- Multi-route portfolio with smooth animated transitions between Home, About, Experience, Certifications, Projects, Skills, Leadership, and Contact
+- Glassmorphism + neon-accent visual language designed for dark mode readability
+- Responsive layout system optimized for desktop and mobile navigation
 
-### Navbar
-- Fixed frosted-glass navbar with active section tracking via `getBoundingClientRect`
-- Animated sliding pill indicator on the active nav link
-- Centered nav links using CSS Grid (`grid-cols-[auto_1fr_auto]`)
-- Responsive hamburger menu for mobile
+### Navigation & Interaction
+- Fixed frosted navbar with active-route highlighting and mobile menu
+- Global command palette (`⌘K` / `Ctrl+K`) for quick page navigation
+- Top progress bar and custom right-edge scroll indicator for better reading position awareness
 
-### Hero
-- Full-screen layout with profile photo, name, role, and Fannie Mae incoming badge
-- Animated typing terminal (`system_status.sh`) cycling through stack verification logs
-- Social icon dock with tooltip labels (Email, GitHub, LinkedIn, AWS Credly)
+### Home & Visual Identity
+- Cinematic hero with motion effects, social links, and recruiter-facing intro
+- Animated starfield, tech-grid overlay, and cursor spotlight to create depth without sacrificing content legibility
 
-### About
-- Glassmorphism card with bio, values, and academic stats
-- Highlighted goal statements with bold metric callouts
+### Content Sections
+- **About:** concise personal/academic context with strong visual hierarchy
+- **Experience:** timeline-first layout with motion-driven progression cues
+- **Projects:** featured and standard project cards with tech tags and external links
+- **Skills:** categorized technical stack display with branded icon styling
+- **Certifications:** direct links to verified credentials
+- **Leadership:** impact-focused cards with metrics and organization links
 
-### Experience
-- Animated circuit timeline using `useScroll` + `useSpring` + `useTransform` from Framer Motion
-- Glowing scroll-tracking dot that travels along the timeline as you scroll
-- Per-role tech trace icons (brand-colored, `size={20}`) and system status footer bar
-- "Incoming" badge with pulse animation for the Fannie Mae role
-
-### Projects
-- Featured cards (AuthGuard, Fitness Genius) with blue highlight callout boxes
-- Standard project cards with transparent border at rest, white border on hover
-- Tech stack badges and external/GitHub links per project
-
-### Skills
-- 4-quadrant bento grid: Languages, AI/ML, Engineering & Cloud, Security & Ethics
-- Always-on brand colors per icon via `hexGlow()` drop-shadow filter
-- Spring-animated pill hover effect
-
-### Certifications
-- Clickable cards linking to Credly badge and Forage simulation PDF
-
-### Leadership
-- "Proof of Impact Hub" layout: two satellite cards connected to a central animated Community Core node via live SVG data streams
-- Lucide + Game Icons per organization (Trophy, HeartHandshake)
-- Bold metric callouts, role titles, and Visit Website links per card
-
-### Contact
-- Glassmorphism centered card with labeled, high-contrast input fields
-- **Ghost text autocomplete** — context-aware suggestions for Subject and Message fields; press `Tab` to accept
-- **EmailJS integration** — form submits directly via `emailjs.send()` with no backend required
-- Animated success/error states via `AnimatePresence`
-- Auto-reset: form clears 2.5s after a successful send
-- Social links (GitHub, LinkedIn, Email) in card footer
+### Contact Workflow
+- Browser-only contact form powered by EmailJS (no backend required)
+- Guided message composition with ghost-text autocomplete
+- Animated submit states and success/error feedback for clear UX
 
 ---
 

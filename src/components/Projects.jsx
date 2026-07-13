@@ -1,51 +1,52 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import docflowImage from "../images/docflow.png";
+import aiechomailImage from "../images/aiechomail.png";
+import mealMatchImage from "../images/mealmatch.png";
+import authguardImage from "../images/authguard.png";
+import fitnessGeniusImage from "../images/fitnessgenius.jpeg";
+
 
 const PROJECTS_DATA = [
   {
     title: "DocFlow",
-    desc: "Automated document intake and classification pipeline simulating AWS Tools",
+    desc: "Simulates AWS Textract and Bedrock to automatically extract, classify, and route enterprise documents into typed data queues for streamlined downstream processing.",
     primaryMetric: "Auto-Classified",
     tech: ["AWS Textract", "Bedrock", "pytest"],
     link: "https://github.com/rudraagarwal01/DocFlow",
-    type: "Featured",
-    statusColor: "bg-violet-500"
+    image: docflowImage
   },
   {
     title: "AI EchoMail",
-    desc: "Automated drafting engine with HuggingFace safety moderation.",
+    desc: "Full-stack application using GPT-4, FAISS vector search, and multi-agent AI moderation to generate and refine professional emails.",
     primaryMetric: "-60% Draft Time",
     tech: ["FastAPI", "Python", "OpenAI"],
     link: "https://github.com/rudraagarwal01/AI-Email-Drafting-Tool",
-    type: "Featured",
-    statusColor: "bg-blue-500"
+    image: aiechomailImage
   },
   {
     title: "MealMatch",
-    desc: "Platform mapping surplus commercial food to community groups.",
+    desc: "Real-time logistics platform connecting surplus restaurant food to communities using smart-matching algorithms and interactive maps.",
     primaryMetric: "1,000+ Listings",
     tech: ["React", "SQLite", "Leaflet"],
     link: "https://github.com/rudraagarwal01/MealMatch",
-    type: "Featured",
-    statusColor: "bg-indigo-500"
+    image: mealMatchImage
   },
   {
     title: "AuthGuard Extension",
-    desc: "Chrome client blocking typo-squatting and phishing URLs.",
+    desc: "Cybersecurity Chrome extension analyzing URLs in real-time to detect typo-squatting, insecure forms, and deceptive phishing portals.",
     primaryMetric: "95% Detection",
     tech: ["JavaScript", "HTML", "Chrome API"],
     link: "https://github.com/rudraagarwal01/authGaurd",
-    type: "Independent",
-    statusColor: "bg-zinc-500"
+    image: authguardImage
   },
   {
     title: "Fitness Genius",
-    desc: "Native iOS biometric fitness logger with Apple HealthKit.",
+    desc: "Native iOS fitness application leveraging Apple HealthKit to securely log, manage, and visualize personal biometric data and daily activity metrics.",
     primaryMetric: "2,000+ Users",
     tech: ["Swift", "HealthKit", "Xcode"],
     link: "https://fitnessgenius28.wixsite.com/gym-genius",
-    type: "Independent",
-    statusColor: "bg-zinc-500"
+    image: fitnessGeniusImage
   },
 ];
 
@@ -54,15 +55,15 @@ const listVariants = {
   visible: { transition: { staggerChildren: 0.08 } },
 };
 
-const rowVariants = {
-  hidden: { opacity: 0, x: -10 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" } },
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 export default function Projects() {
   return (
     <section id="projects" className="px-6 pb-24">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
         <motion.div
@@ -88,76 +89,89 @@ export default function Projects() {
           />
         </motion.div>
 
-        {/* The "Process Monitor" List */}
+        {/* Bento Grid layout */}
         <motion.div
           variants={listVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-40px" }}
-          className="flex flex-col border-y border-white/10"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {/* Table Header (Hidden on small screens) */}
-          <div className="hidden md:grid grid-cols-[auto_1fr_auto_auto] gap-8 items-center px-4 py-3 border-b border-white/5 text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
-            <span className="w-24">Status</span>
-            <span>Process / Description</span>
-            <span className="w-48">Core Metric / Stack</span>
-            <span className="w-24 text-right">Action</span>
-          </div>
-
-          {/* Project Rows */}
-          {PROJECTS_DATA.map((p, index) => (
+          {PROJECTS_DATA.map((p) => (
             <motion.div
               key={p.title}
-              variants={rowVariants}
-              className="group grid grid-cols-1 md:grid-cols-[auto_1fr_auto_auto] gap-4 md:gap-8 items-start md:items-center px-4 py-6 border-b border-white/5 hover:bg-white/[0.02] transition-colors duration-200"
+              variants={cardVariants}
+              className="group relative flex flex-col rounded-2xl border border-white/10 bg-[#0a0a0e] overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 h-[420px] hover:border-blue-500/80 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]"
             >
-              {/* Column 1: Status */}
-              <div className="flex items-center gap-2.5 w-24 pt-1 md:pt-0">
-                <span className={`w-1.5 h-1.5 rounded-full ${p.statusColor} shadow-[0_0_8px_currentColor]`} />
-                <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">
-                  {p.type}
-                </span>
+              
+              {/* TOP: Visual Mockup / App Image */}
+              <div className="relative w-full h-[55%] overflow-hidden bg-zinc-950 flex items-center justify-center border-b border-white/5">
+                {/* Subtle bottom shadow overlay on the image to blend into the text section */}
+                <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[#0a0a0e] to-transparent z-10" />
+                
+                {p.image ? (
+                  <img 
+                    src={p.image} 
+                    alt={`${p.title} preview`} 
+                    className="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
+                    onError={(e) => { e.target.style.display = 'none'; }}
+                  />
+                ) : null}
+
+                {/* Fallback Grid Pattern */}
+                <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:12px_12px]" />
+                <div className="absolute w-12 h-12 rounded-full border border-dashed border-white/10 animate-[spin_20s_linear_infinite]" />
               </div>
 
-              {/* Column 2: Name & Description */}
-              <div className="flex flex-col pr-4">
-                <h3 className="font-mono font-bold text-lg text-zinc-100 group-hover:text-blue-400 transition-colors duration-200">
-                  {p.title}
-                </h3>
-                <p className="text-sm text-zinc-400 mt-1 max-w-xl">
-                  {p.desc}
-                </p>
-              </div>
+              {/* BOTTOM: Metadata & Details */}
+              <div className="w-full h-[45%] p-5 flex flex-col justify-between z-10 bg-gradient-to-b from-[#0a0a0e] to-zinc-950/80">
+                <div>
+                  <h3 className="font-sans font-bold text-lg tracking-tight text-zinc-100 group-hover:text-white transition-colors duration-200 line-clamp-1">
+                    {p.title}
+                  </h3>
+                  
+                  {/* Distinct UI tags for all 3 tech stack items */}
+                  <div className="flex flex-wrap gap-1.5 mt-1.5 mb-2.5">
+                    {p.tech.map((t) => (
+                      <span 
+                        key={t} 
+                        className="text-[9px] font-mono text-zinc-400 bg-white/5 border border-white/10 px-1.5 py-0.5 rounded uppercase tracking-wider"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  {/* Forced height constraint to lock in 3 lines of physical space */}
+                  <p className="text-[12px] text-zinc-400 line-clamp-3 leading-relaxed h-[58px]">
+                    {p.desc}
+                  </p>
+                </div>
 
-              {/* Column 3: Metrics & Stack */}
-              <div className="flex flex-col md:w-48 gap-2">
-                <span className="font-mono font-bold text-zinc-200 text-sm">
-                  {p.primaryMetric}
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  {p.tech.map((t) => (
-                    <span 
-                      key={t} 
-                      className="text-[9px] font-mono text-zinc-500 bg-white/5 border border-white/10 px-1.5 py-0.5 rounded uppercase"
-                    >
-                      {t}
+                {/* Footer Action Row */}
+                <div className="flex items-center justify-between mt-auto pt-2">
+                  {/* Left Side Metric */}
+                  <div className="flex items-center text-zinc-500">
+                    <span className="text-[11px] font-mono font-medium group-hover:text-zinc-300 transition-colors">
+                      {p.primaryMetric}
                     </span>
-                  ))}
+                  </div>
+
+                  {/* Right Side Pill Button (Uniform Blue) */}
+                  <a
+                    href={p.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-mono font-semibold transition-all duration-300 border-blue-500/50 text-blue-400 hover:bg-blue-500/20"
+                  >
+                    <span>
+                      {p.link.includes("github.com") ? "Source" : "Live"}
+                    </span>
+                    <ArrowUpRight size={12} strokeWidth={2.5} />
+                  </a>
                 </div>
               </div>
 
-              {/* Column 4: Action */}
-              <div className="md:w-24 md:text-right pt-2 md:pt-0">
-                <a
-                  href={p.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-500 hover:text-blue-400 transition-colors duration-200"
-                >
-                  {p.link.includes("github.com") ? "src_code" : "live_deploy"}
-                  <ArrowUpRight size={14} className="text-zinc-600 group-hover:text-blue-400 transition-colors" />
-                </a>
-              </div>
             </motion.div>
           ))}
         </motion.div>
