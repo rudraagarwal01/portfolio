@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import urbanenergyImage from "../images/urbanenergy.png";
 import docflowImage from "../images/docflow.png";
 import aiechomailImage from "../images/aiechomail.png";
 import mealMatchImage from "../images/mealmatch.png";
@@ -8,6 +9,14 @@ import fitnessGeniusImage from "../images/fitnessgenius.jpeg";
 
 
 const PROJECTS_DATA = [
+  {
+    title: "Urban Energy Insights",
+    desc: "Event-driven platform for ingesting building telemetry, computing rolling slot baselines, and autonomously flagging demand anomalies via Redis Streams.",
+    primaryMetric: "<200ms Reaction Time",
+    tech: ["Docker", "Redis Streams", "PostgreSQL"],
+    link: "https://github.com/rudraagarwal01/urban-energy-insights",
+    image: urbanenergyImage
+  },
   {
     title: "DocFlow",
     desc: "Simulates AWS Textract and Bedrock to automatically extract, classify, and route enterprise documents into typed data queues for streamlined downstream processing.",
@@ -101,11 +110,11 @@ export default function Projects() {
             <motion.div
               key={p.title}
               variants={cardVariants}
-              className="group relative flex flex-col rounded-2xl border border-white/10 bg-[#0a0a0e] overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 h-[420px] hover:border-blue-500/80 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]"
+              className="group relative flex flex-col rounded-2xl border border-white/10 bg-[#0a0a0e] overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 min-h-[420px] hover:border-blue-500/80 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]"
             >
               
               {/* TOP: Visual Mockup / App Image */}
-              <div className="relative w-full h-[55%] overflow-hidden bg-zinc-950 flex items-center justify-center border-b border-white/5">
+              <div className="relative w-full h-[220px] shrink-0 overflow-hidden bg-zinc-950 flex items-center justify-center border-b border-white/5">
                 {/* Subtle bottom shadow overlay on the image to blend into the text section */}
                 <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[#0a0a0e] to-transparent z-10" />
                 
@@ -124,9 +133,9 @@ export default function Projects() {
               </div>
 
               {/* BOTTOM: Metadata & Details */}
-              <div className="w-full h-[45%] p-5 flex flex-col justify-between z-10 bg-gradient-to-b from-[#0a0a0e] to-zinc-950/80">
+              <div className="w-full flex-1 p-5 flex flex-col justify-between z-10 bg-gradient-to-b from-[#0a0a0e] to-zinc-950/80">
                 <div>
-                  <h3 className="font-sans font-bold text-lg tracking-tight text-zinc-100 group-hover:text-white transition-colors duration-200 line-clamp-1">
+                  <h3 className="font-sans font-bold text-lg tracking-tight text-zinc-100 group-hover:text-white transition-colors duration-200">
                     {p.title}
                   </h3>
                   
@@ -142,8 +151,8 @@ export default function Projects() {
                     ))}
                   </div>
                   
-                  {/* Forced height constraint to lock in 3 lines of physical space */}
-                  <p className="text-[12px] text-zinc-400 line-clamp-3 leading-relaxed h-[58px]">
+                  {/* Removed line-clamp and fixed heights so the whole description displays uniformly */}
+                  <p className="text-[12px] text-zinc-400 leading-relaxed mb-4">
                     {p.desc}
                   </p>
                 </div>
