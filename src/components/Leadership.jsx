@@ -1,7 +1,18 @@
 import { motion } from "framer-motion";
 import { ExternalLink, HeartHandshake, Trophy } from "lucide-react";
+import { SiAdobe } from "react-icons/si";
 
 const items = [
+  {
+    org: "Adobe",
+    Icon: SiAdobe,
+    tag: "Adobe Student Ambassador",
+    points: [
+      "Lead interactive workshops and training sessions focused on Adobe Firefly generative AI.",
+      "Host campus-wide events and tutorials to demonstrate the capabilities of Adobe Creative Cloud applications.",
+      "Collaborate with student organizations to integrate Adobe tools into their creative projects and campaigns.",
+    ],
+  },
   {
     org: "A.C.E Cricket",
     Icon: Trophy,
@@ -26,68 +37,6 @@ const items = [
   },
 ];
 
-// ─── Animated data stream connector ──────────────────────────────────────────
-function DataStream({ direction }) {
-  const offset = direction === "left" ? "10" : "-10";
-  return (
-    <div className="hidden md:block w-20 flex-shrink-0 px-1">
-      <svg width="100%" height="6" style={{ overflow: "visible" }}>
-        {/* Glow bloom */}
-        <line x1="0" y1="3" x2="100%" y2="3"
-          stroke="rgba(59,130,246,0.18)" strokeWidth="5" strokeDasharray="6 4" strokeLinecap="round">
-          <animate attributeName="stroke-dashoffset" from="0" to={offset} dur="1.2s" repeatCount="indefinite" />
-        </line>
-        {/* Core line */}
-        <line x1="0" y1="3" x2="100%" y2="3"
-          stroke="rgba(59,130,246,0.65)" strokeWidth="1.5" strokeDasharray="6 4" strokeLinecap="round">
-          <animate attributeName="stroke-dashoffset" from="0" to={offset} dur="1.2s" repeatCount="indefinite" />
-        </line>
-      </svg>
-    </div>
-  );
-}
-
-// ─── Central hub node ─────────────────────────────────────────────────────────
-function HubNode() {
-  return (
-    <div className="hidden md:flex flex-shrink-0 w-[140px] h-[140px] relative items-center justify-center">
-      {/* Outer pulse ring */}
-      <motion.div
-        animate={{ scale: [1, 1.12, 1], opacity: [0.3, 0.1, 0.3] }}
-        transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-0 rounded-full border border-blue-500/40"
-      />
-      {/* Mid ring */}
-      <div className="absolute inset-4 rounded-full border border-blue-500/20 bg-blue-500/4" />
-      {/* Inner core */}
-      <div className="relative w-[72px] h-[72px] rounded-full bg-[#141418] border-2 border-blue-500/60 shadow-[0_0_24px_rgba(59,130,246,0.45),inset_0_0_12px_rgba(59,130,246,0.08)] flex flex-col items-center justify-center gap-0.5">
-        <span className="text-[7px] font-mono font-bold text-blue-300 uppercase tracking-[0.2em] leading-tight">
-          Community
-        </span>
-        <span className="text-[7px] font-mono font-bold text-blue-300 uppercase tracking-[0.2em] leading-tight">
-          Core
-        </span>
-      </div>
-    </div>
-  );
-}
-
-// ─── Mobile hub (compact) ─────────────────────────────────────────────────────
-function HubNodeMobile() {
-  return (
-    <div className="md:hidden flex items-center justify-center mb-2">
-      <div className="relative w-16 h-16 rounded-full bg-[#141418] border-2 border-blue-500/60 shadow-[0_0_16px_rgba(59,130,246,0.4)] flex flex-col items-center justify-center">
-        <span className="text-[7px] font-mono font-bold text-blue-300 uppercase tracking-widest leading-tight">
-          Community
-        </span>
-        <span className="text-[7px] font-mono font-bold text-blue-300 uppercase tracking-widest leading-tight">
-          Core
-        </span>
-      </div>
-    </div>
-  );
-}
-
 // ─── Satellite card ───────────────────────────────────────────────────────────
 const cardVariants = {
   hidden:  { opacity: 0, y: 20 },
@@ -98,7 +47,7 @@ function LeadershipCard({ item }) {
   return (
     <motion.div
       variants={cardVariants}
-      className="flex-1 bg-white/5 backdrop-blur-md border border-white/8 rounded-2xl p-7 flex flex-col gap-5 hover:border-white/16 transition-colors duration-300"
+      className="flex-1 bg-transparent backdrop-blur-md border border-white/8 rounded-2xl p-7 flex flex-col gap-5 hover:border-white/16 transition-colors duration-300"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-start gap-3">
@@ -188,23 +137,17 @@ export default function Leadership() {
           />
         </motion.div>
 
-        {/* Mobile hub */}
-        <HubNodeMobile />
-
-        {/* Desktop: [Card] [Stream] [Hub] [Stream] [Card] */}
-        {/* Mobile: stacked cards */}
+        {/* Equal-width leadership cards (Adobe first) */}
         <motion.div
-          className="flex flex-col md:flex-row md:items-center gap-5 md:gap-0"
+          className="grid grid-cols-1 md:grid-cols-2 gap-5"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-30px" }}
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
         >
           <LeadershipCard item={items[0]} />
-          <DataStream direction="left" />
-          <HubNode />
-          <DataStream direction="right" />
           <LeadershipCard item={items[1]} />
+          <LeadershipCard item={items[2]} />
         </motion.div>
 
       </div>

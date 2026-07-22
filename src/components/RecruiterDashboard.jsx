@@ -207,7 +207,7 @@ export default function RecruiterDashboard() {
               <ActionHint text="Open Leadership" />
             </div>
             <p className="text-sm text-zinc-300 leading-relaxed">
-              Founder of A.C.E. Cricket (50+ members). Raised $2,500+ for Make-A-Wish.
+              Adobe Student Ambassador - Leading campus workshops on Adobe Firefly generative AI.
             </p>
           </motion.button>
 
