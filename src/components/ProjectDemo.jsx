@@ -7,17 +7,10 @@ export default function ProjectDemo({ title, tagline, steps, renderOutput }) {
   const [status, setStatus] = useState("idle"); // "idle" | "running" | "done"
   const [activeStep, setActiveStep] = useState(-1);
   const timersRef = useRef([]);
-  const outputRef = useRef(null);
 
   useEffect(() => {
     return () => timersRef.current.forEach(clearTimeout);
   }, []);
-
-  useEffect(() => {
-    if (status === "done") {
-      outputRef.current = renderOutput();
-    }
-  }, [status]);
 
   function runDemo() {
     timersRef.current.forEach(clearTimeout);
@@ -113,7 +106,7 @@ export default function ProjectDemo({ title, tagline, steps, renderOutput }) {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
-            {outputRef.current}
+            {renderOutput()}
           </motion.div>
         )}
       </div>

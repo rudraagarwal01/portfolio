@@ -22,7 +22,7 @@ function renderOutput() {
       <p className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider mb-3">
         Classified Payload
       </p>
-      <pre className="font-mono text-xs text-green-400 leading-relaxed whitespace-pre">
+      <pre className="font-mono text-xs text-green-400 leading-relaxed whitespace-pre-wrap">
         {JSON.stringify(mockPayload, null, 2)}
       </pre>
     </div>

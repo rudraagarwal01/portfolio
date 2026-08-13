@@ -120,7 +120,7 @@ export default function UrbanEnergyDemo() {
   return (
     <ProjectDemo
       title="Urban Energy Insights"
-      tagline="Event-driven telemetry with &lt;200ms anomaly detection via Redis Streams"
+      tagline={`Event-driven telemetry with <200ms anomaly detection via Redis Streams`}
       steps={steps}
       renderOutput={renderOutput}
     />
