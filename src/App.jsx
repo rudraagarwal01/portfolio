@@ -14,6 +14,12 @@ import Projects from "./pages/Projects";
 import Skills from "./pages/Skills";
 import Leadership from "./pages/Leadership";
 import Contact from "./pages/Contact";
+import DocFlowDemo from "./pages/demos/DocFlowDemo";
+import AIEchoMailDemo from "./pages/demos/AIEchoMailDemo";
+import MealMatchDemo from "./pages/demos/MealMatchDemo";
+import UrbanEnergyDemo from "./pages/demos/UrbanEnergyDemo";
+import AuthGuardDemo from "./pages/demos/AuthGuardDemo";
+import FitnessGeniusDemo from "./pages/demos/FitnessGeniusDemo";
 import "./App.css";
 
 function AppShell() {
@@ -115,6 +121,12 @@ function AppShell() {
             <Route path="/skills" element={<Skills />} />
             <Route path="/leadership" element={<Leadership />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/demos/docflow" element={<DocFlowDemo />} />
+            <Route path="/demos/aiechomail" element={<AIEchoMailDemo />} />
+            <Route path="/demos/mealmatch" element={<MealMatchDemo />} />
+            <Route path="/demos/urban-energy" element={<UrbanEnergyDemo />} />
+            <Route path="/demos/authguard" element={<AuthGuardDemo />} />
+            <Route path="/demos/fitness-genius" element={<FitnessGeniusDemo />} />
           </Routes>
         </AnimatePresence>
       </main>
