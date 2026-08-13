@@ -7,10 +7,17 @@ export default function ProjectDemo({ title, tagline, steps, renderOutput }) {
   const [status, setStatus] = useState("idle"); // "idle" | "running" | "done"
   const [activeStep, setActiveStep] = useState(-1);
   const timersRef = useRef([]);
+  const outputRef = useRef(null);
 
   useEffect(() => {
     return () => timersRef.current.forEach(clearTimeout);
   }, []);
+
+  useEffect(() => {
+    if (status === "done") {
+      outputRef.current = renderOutput();
+    }
+  }, [status]);
 
   function runDemo() {
     timersRef.current.forEach(clearTimeout);
@@ -66,7 +73,7 @@ export default function ProjectDemo({ title, tagline, steps, renderOutput }) {
             const active = activeStep === i && status === "running";
             return (
               <div
-                key={i}
+                key={step.label}
                 className={`flex items-center gap-3 font-mono text-sm transition-colors duration-300 ${
                   done ? "text-cyan-400" : active ? "text-blue-400" : "text-zinc-500"
                 }`}
@@ -106,7 +113,7 @@ export default function ProjectDemo({ title, tagline, steps, renderOutput }) {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
-            {renderOutput()}
+            {outputRef.current}
           </motion.div>
         )}
       </div>
