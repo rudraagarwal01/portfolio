@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import urbanenergyImage from "../images/urbanenergy.png";
 import docflowImage from "../images/docflow.png";
 import aiechomailImage from "../images/aiechomail.png";
@@ -15,6 +16,7 @@ const PROJECTS_DATA = [
     primaryMetric: "<200ms Reaction Time",
     tech: ["Docker", "Redis Streams", "PostgreSQL"],
     link: "https://github.com/rudraagarwal01/urban-energy-insights",
+    demoPath: "/demos/urban-energy",
     image: urbanenergyImage
   },
   {
@@ -23,6 +25,7 @@ const PROJECTS_DATA = [
     primaryMetric: "Auto-Classified",
     tech: ["AWS Textract", "Bedrock", "pytest"],
     link: "https://github.com/rudraagarwal01/DocFlow",
+    demoPath: "/demos/docflow",
     image: docflowImage
   },
   {
@@ -31,6 +34,7 @@ const PROJECTS_DATA = [
     primaryMetric: "-60% Draft Time",
     tech: ["FastAPI", "Python", "OpenAI"],
     link: "https://github.com/rudraagarwal01/AI-Email-Drafting-Tool",
+    demoPath: "/demos/aiechomail",
     image: aiechomailImage
   },
   {
@@ -39,6 +43,7 @@ const PROJECTS_DATA = [
     primaryMetric: "1,000+ Listings",
     tech: ["React", "SQLite", "Leaflet"],
     link: "https://github.com/rudraagarwal01/MealMatch",
+    demoPath: "/demos/mealmatch",
     image: mealMatchImage
   },
   {
@@ -47,6 +52,7 @@ const PROJECTS_DATA = [
     primaryMetric: "95% Detection",
     tech: ["JavaScript", "HTML", "Chrome API"],
     link: "https://github.com/rudraagarwal01/authGaurd",
+    demoPath: "/demos/authguard",
     image: authguardImage
   },
   {
@@ -55,6 +61,7 @@ const PROJECTS_DATA = [
     primaryMetric: "2,000+ Users",
     tech: ["Swift", "HealthKit", "Xcode"],
     link: "https://fitnessgenius28.wixsite.com/gym-genius",
+    demoPath: "/demos/fitness-genius",
     image: fitnessGeniusImage
   },
 ];
@@ -166,18 +173,26 @@ export default function Projects() {
                     </span>
                   </div>
 
-                  {/* Right Side Pill Button (Uniform Blue) */}
-                  <a
-                    href={p.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-mono font-semibold transition-all duration-300 border-blue-500/50 text-blue-400 hover:bg-blue-500/20"
-                  >
-                    <span>
-                      {p.link.includes("github.com") ? "Source" : "Live"}
-                    </span>
-                    <ArrowUpRight size={12} strokeWidth={2.5} />
-                  </a>
+                  {/* Right Side Buttons */}
+                  <div className="flex items-center gap-2">
+                    <Link
+                      to={p.demoPath}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-mono font-semibold transition-all duration-300 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/20"
+                    >
+                      Try it
+                    </Link>
+                    <a
+                      href={p.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-mono font-semibold transition-all duration-300 border-blue-500/50 text-blue-400 hover:bg-blue-500/20"
+                    >
+                      <span>
+                        {p.link.includes("github.com") ? "Source" : "Live"}
+                      </span>
+                      <ArrowUpRight size={12} strokeWidth={2.5} />
+                    </a>
+                  </div>
                 </div>
               </div>
 
