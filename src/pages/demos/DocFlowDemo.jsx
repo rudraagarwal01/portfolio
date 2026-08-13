@@ -38,7 +38,7 @@ function DocOutput() {
       <div className="grid grid-cols-2 gap-4">
 
         {/* Left: Invoice document mockup */}
-        <div className="relative bg-zinc-100 rounded-xl p-4 overflow-hidden">
+        <div className="relative bg-zinc-900 border border-white/10 rounded-xl p-4 overflow-hidden">
           {/* OCR scan line sweeps downward then fades */}
           <motion.div
             className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent pointer-events-none z-10"
@@ -47,8 +47,8 @@ function DocOutput() {
             transition={{ duration: 1.1, ease: "linear" }}
           />
 
-          <div className="mb-3 pb-2 border-b border-zinc-300">
-            <p className="font-bold text-zinc-800 text-sm tracking-widest">INVOICE</p>
+          <div className="mb-3 pb-2 border-b border-white/10">
+            <p className="font-bold text-zinc-100 text-sm tracking-widest font-mono">INVOICE</p>
             <p className="text-[10px] text-zinc-500 font-mono">Apex Industrial Supply Co.</p>
           </div>
 
@@ -57,13 +57,13 @@ function DocOutput() {
               <div
                 key={label}
                 className={`flex justify-between text-[10px] rounded px-1.5 py-0.5 ${
-                  highlight ? "bg-blue-200/80" : ""
+                  highlight ? "bg-blue-500/15 border border-blue-500/20" : ""
                 }`}
               >
                 <span className="text-zinc-500 font-mono">{label}</span>
                 <span
                   className={`font-mono font-semibold ${
-                    highlight ? "text-blue-800" : "text-zinc-600"
+                    highlight ? "text-blue-300" : "text-zinc-400"
                   }`}
                 >
                   {value}
@@ -72,8 +72,8 @@ function DocOutput() {
             ))}
           </div>
 
-          <div className="mt-3 pt-2 border-t border-zinc-300">
-            <p className="text-[9px] text-zinc-400 uppercase tracking-wider mb-1.5 font-mono">
+          <div className="mt-3 pt-2 border-t border-white/10">
+            <p className="text-[9px] text-zinc-500 uppercase tracking-wider mb-1.5 font-mono">
               Line Items
             </p>
             {lineItems.map((item) => (
