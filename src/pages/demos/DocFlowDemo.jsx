@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FileText, ScanText, BrainCircuit, GitBranch } from "lucide-react";
 import ProjectDemo from "../../components/ProjectDemo";
+import { DEMO_DESCRIPTIONS } from "../../lib/projectDemoConfigs";
 
 const steps = [
   { label: "Upload document", icon: FileText },
@@ -149,6 +150,7 @@ export default function DocFlowDemo() {
       title="DocFlow"
       tagline="Simulated AWS Textract + Bedrock classification pipeline"
       steps={steps}
+      description={DEMO_DESCRIPTIONS.docflow}
       renderOutput={renderOutput}
     />
   );

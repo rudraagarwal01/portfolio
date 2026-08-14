@@ -1,5 +1,6 @@
 import { Link2, Search, ScanFace, ShieldAlert } from "lucide-react";
 import ProjectDemo from "../../components/ProjectDemo";
+import { DEMO_DESCRIPTIONS } from "../../lib/projectDemoConfigs";
 
 const steps = [
   { label: "Parse URL", icon: Link2 },
@@ -57,6 +58,7 @@ export default function AuthGuardDemo() {
       title="AuthGuard Extension"
       tagline="Real-time phishing and typosquatting detection with 95% accuracy"
       steps={steps}
+      description={DEMO_DESCRIPTIONS.authguard}
       renderOutput={renderOutput}
     />
   );

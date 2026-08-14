@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FileText, Smile, CheckCircle, Shield, Wand2 } from "lucide-react";
 import ProjectDemo from "../../components/ProjectDemo";
+import { DEMO_DESCRIPTIONS } from "../../lib/projectDemoConfigs";
 
 const steps = [
   { label: "Parse note", icon: FileText },
@@ -17,7 +18,7 @@ const scores = [
   { label: "Overall", value: 92 },
 ];
 
-const draft = `Subject: Follow-Up on Project Proposal — Q3 Partnership
+const draft = `Subject: Follow-Up on Project Proposal: Q3 Partnership
 
 Hi Sarah,
 
@@ -72,8 +73,9 @@ export default function AIEchoMailDemo() {
   return (
     <ProjectDemo
       title="AI EchoMail"
-      tagline="GPT-4 powered email generation with multi-agent moderation — 60% faster drafting"
+      tagline="GPT-4 powered email generation with multi-agent moderation, 60% faster drafting"
       steps={steps}
+      description={DEMO_DESCRIPTIONS.aiEchoMail}
       renderOutput={renderOutput}
     />
   );

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Search, MapPin, Cpu, CheckCircle } from "lucide-react";
 import ProjectDemo from "../../components/ProjectDemo";
+import { DEMO_DESCRIPTIONS } from "../../lib/projectDemoConfigs";
 
 const steps = [
   { label: "Scan active listings", icon: Search },
@@ -53,7 +54,7 @@ function renderOutput() {
       >
         <CheckCircle size={14} className="text-cyan-400" />
         <span className="font-mono text-xs text-cyan-400 font-semibold">
-          Match Confirmed — 40 portions · 0.8 mi
+          Match Confirmed: 40 portions · 0.8 mi
         </span>
       </motion.div>
     </div>
@@ -66,6 +67,7 @@ export default function MealMatchDemo() {
       title="MealMatch"
       tagline="Smart-matching surplus restaurant food to communities across 1,000+ active listings"
       steps={steps}
+      description={DEMO_DESCRIPTIONS.mealMatch}
       renderOutput={renderOutput}
     />
   );

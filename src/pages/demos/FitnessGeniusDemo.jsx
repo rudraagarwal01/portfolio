@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Heart, Footprints, Flame, Moon } from "lucide-react";
 import ProjectDemo from "../../components/ProjectDemo";
+import { DEMO_DESCRIPTIONS } from "../../lib/projectDemoConfigs";
 
 const steps = [
   { label: "Connect HealthKit", icon: Heart },
@@ -52,6 +53,7 @@ export default function FitnessGeniusDemo() {
       title="Fitness Genius"
       tagline="Native iOS fitness app integrating Apple HealthKit for 2,000+ users"
       steps={steps}
+      description={DEMO_DESCRIPTIONS.fitnessGenius}
       renderOutput={renderOutput}
     />
   );
