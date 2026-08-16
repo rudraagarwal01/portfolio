@@ -35,9 +35,9 @@ export const DEMO_DESCRIPTIONS = {
     problem:
       "Phishing sites that slightly misspell legitimate domains (like paypa1.com) bypass standard blocklists and slip past users who aren't scrutinizing every URL.",
     approach:
-      "AuthGuard runs every visited URL through an entropy check, a typosquatting scan against known brand names, and a form security audit, all in the browser with no server round-trip. If any signal crosses threshold, the page is blocked and the user sees exactly why.",
-    stack: ["JavaScript", "HTML", "Chrome API"],
-    outcome: "95% detection accuracy on phishing and typosquatting patterns.",
+      "The Chrome extension runs every visited URL through an entropy check, a typosquatting scan, and a form security audit. Flagged domains are posted to a FastAPI backend that scores risk, persists reports in PostgreSQL, and surfaces them in a React admin dashboard for review.",
+    stack: ["FastAPI", "PostgreSQL", "React", "Chrome API"],
+    outcome: "100+ domains in the seeded risk store.",
   },
   fitnessGenius: {
     problem:

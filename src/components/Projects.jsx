@@ -47,10 +47,10 @@ const PROJECTS_DATA = [
     image: mealMatchImage
   },
   {
-    title: "AuthGuard Extension",
-    desc: "Cybersecurity Chrome extension analyzing URLs in real-time to detect typo-squatting, insecure forms, and deceptive phishing portals.",
-    primaryMetric: "95% Detection",
-    tech: ["JavaScript", "HTML", "Chrome API"],
+    title: "AuthGuard",
+    desc: "Chrome extension that flags typo-squatted and insecure login pages in real time, backed by a FastAPI service and PostgreSQL store that scores domain risk and logs reports. Includes an admin dashboard for reviewing flagged sites.",
+    primaryMetric: "95% Detection Accuracy",
+    tech: ["FastAPI", "PostgreSQL", "React", "Chrome API"],
     link: "https://github.com/rudraagarwal01/authGaurd",
     demoPath: "/demos/authguard",
     image: authguardImage
