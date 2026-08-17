@@ -27,9 +27,9 @@ export const DEMO_DESCRIPTIONS = {
     problem:
       "Restaurants discard surplus food daily while nearby shelters and community centers go underserved; the coordination gap is that neither side can find the other in real time.",
     approach:
-      "Restaurants post surplus listings with portion count and pickup window. MealMatch runs a proximity-weighted matching algorithm to find the closest eligible claimant and confirms a reservation in seconds, backed by interactive maps and a live listing feed.",
-    stack: ["React", "SQLite", "Leaflet"],
-    outcome: "Active across 1,000+ food listings.",
+      "Restaurants post surplus listings with portion count and pickup window. The FastAPI backend uses Postgres row-level locking (SELECT FOR UPDATE) to ensure exactly one claim wins when multiple recipients request the same listing simultaneously—verified in a load test with 100 concurrent claimers. Recipients browse available listings through a swipeable card interface built with Framer Motion.",
+    stack: ["FastAPI", "PostgreSQL", "React", "Framer Motion"],
+    outcome: "Zero duplicate claims across 100 concurrent claimers in load test.",
   },
   authguard: {
     problem:

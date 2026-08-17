@@ -39,9 +39,9 @@ const PROJECTS_DATA = [
   },
   {
     title: "MealMatch",
-    desc: "Real-time logistics platform connecting surplus restaurant food to communities using smart-matching algorithms and interactive maps.",
-    primaryMetric: "1,000+ Listings",
-    tech: ["React", "SQLite", "Leaflet"],
+    desc: "Full-stack food recovery platform matching restaurant surplus to recipients and partner organizations. Uses Postgres row-level locking (SELECT FOR UPDATE) to guarantee exactly one claim wins under concurrent load. Recipients browse via a swipeable card interface built with Framer Motion.",
+    primaryMetric: "Zero Duplicate Claims",
+    tech: ["FastAPI", "PostgreSQL", "React", "Framer Motion"],
     link: "https://github.com/rudraagarwal01/MealMatch",
     demoPath: "/demos/mealmatch",
     image: mealMatchImage
