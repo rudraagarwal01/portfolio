@@ -30,9 +30,9 @@ const PROJECTS_DATA = [
   },
   {
     title: "AI EchoMail",
-    desc: "Full-stack application using GPT-4, FAISS vector search, and multi-agent AI moderation to generate and refine professional emails.",
-    primaryMetric: "-60% Draft Time",
-    tech: ["FastAPI", "Python", "OpenAI"],
+    desc: "5-page agentic email drafting app: a three-stage loop (draft, critique, revise) with live scoring rings across tone, grammar, length, and compliance; a RAG inspector panel showing retrieved context; and one-click push to Gmail Drafts via OAuth.",
+    primaryMetric: "90+ Backend Tests",
+    tech: ["Claude API", "RAG", "FastAPI", "PostgreSQL", "Gmail OAuth"],
     link: "https://github.com/rudraagarwal01/AI-Email-Drafting-Tool",
     demoPath: "/demos/aiechomail",
     image: aiechomailImage

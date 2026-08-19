@@ -17,11 +17,11 @@ export const DEMO_DESCRIPTIONS = {
   },
   aiEchoMail: {
     problem:
-      "Writing professional emails from scratch is slow, and getting tone, grammar, and compliance right at the same time is hard to do quickly.",
+      "Drafting professional emails from scratch is slow, and a single LLM call is inconsistent — sometimes the tone lands, sometimes it doesn't, with no visibility into why.",
     approach:
-      "AI EchoMail takes a short note or bullet list, routes it through parallel GPT-4 agents for tone analysis, grammar checking, and compliance scanning, then assembles a polished draft. Each agent scores its dimension independently so you can see exactly why the draft came out the way it did.",
-    stack: ["FastAPI", "Python", "OpenAI"],
-    outcome: "~60% reduction in drafting time.",
+      "A three-stage agentic loop (draft, critique, revise) scores every email across tone, grammar, length, and compliance. The scoring and RAG retrieval are both surfaced in the UI rather than hidden behind the result, a moderation gate runs before generation, and finished drafts push directly into Gmail Drafts via OAuth.",
+    stack: ["React", "FastAPI", "Claude API", "FAISS", "PostgreSQL", "Gmail OAuth"],
+    outcome: "90+ backend tests · 5-page shell · Gmail OAuth (test-account scope)",
   },
   mealMatch: {
     problem:
