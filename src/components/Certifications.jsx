@@ -17,6 +17,15 @@ const certs = [
     gradient: "from-amber-500/70 via-orange-400/40 to-yellow-400/70",
   },
   {
+    title: "AWS Certified AI Practitioner",
+    issuer: "Amazon Web Services",
+    date: "August 2026",
+    status: "verified",
+    imageSrc: "/logos/aws.png",
+    credentialLink: null,
+    gradient: "from-amber-500/70 via-orange-400/40 to-yellow-400/70",
+  },
+  {
     title: "Google AI Professional Certificate",
     issuer: "Google",
     date: "June 2026",
@@ -57,16 +66,6 @@ const certs = [
     imageSrc: "/logos/ea.png",
     credentialLink: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/j43dGscQHtJJ57N54/a77WE3de8qrxWferQ_j43dGscQHtJJ57N54_MkGzM7E3fgrPsBR7b_1737178148243_completion_certificate.pdf",
     gradient: "from-violet-500/70 via-indigo-400/40 to-blue-500/70",
-  },
-  {
-    title: "AWS Certified AI Practitioner",
-    issuer: "Amazon Web Services",
-    date: "Expected 2026",
-    status: "in-progress",
-    imageSrc: "/logos/aws.png",
-    credentialLink: null,
-    focusAreas: ["Generative AI", "Foundational Models", "AWS Bedrock"],
-    gradient: "from-amber-500/70 via-orange-400/40 to-yellow-400/70",
   },
 ];
 
