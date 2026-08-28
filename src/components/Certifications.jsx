@@ -22,7 +22,7 @@ const certs = [
     date: "August 2026",
     status: "verified",
     imageSrc: "/logos/aws.png",
-    credentialLink: null,
+    credentialLink: "https://www.credly.com/badges/2afb7660-03b3-41fd-9d0b-062b361ba4cc/public_url",
     gradient: "from-amber-500/70 via-orange-400/40 to-yellow-400/70",
   },
   {
