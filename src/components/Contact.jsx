@@ -222,7 +222,7 @@ export default function Contact() {
                       <MapPin size={14} />
                       <span className="text-[11px] font-mono uppercase tracking-wider">Location</span>
                     </div>
-                    <span className="text-xs font-mono font-medium text-zinc-200">College Park, MD</span>
+                    <span className="text-xs font-mono font-medium text-zinc-200">Washington, D.C.</span>
                   </div>
                 </div>
               </div>

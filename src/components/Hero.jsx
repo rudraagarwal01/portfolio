@@ -123,7 +123,7 @@ export default function Hero() {
           <motion.div {...fadeUp(0.24)} className="mb-7">
             <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-blue-500/8 border border-blue-500/20 text-sm font-mono font-semibold text-blue-400 tracking-wide">
               <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-              SWE Intern @ Fannie Mae
+              ML Engineer @ App Dev Club · MITRE
             </span>
           </motion.div>
 

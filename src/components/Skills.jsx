@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { Shield, Lock, Scale, EyeOff } from "lucide-react";
 import {
-  SiPython, SiCplusplus, SiJavascript, SiSwift,
-  SiPytorch, SiNeo4J, SiOpenai, SiHuggingface, SiFastapi,
-  SiReact, SiAmazonwebservices, SiDocker, SiPostgresql, SiGit, SiMongodb,
+  SiPython, SiCplusplus, SiJavascript, SiTypescript,
+  SiPytorch, SiNeo4J, SiHuggingface, SiPandas, SiScikitlearn,
+  SiFastapi, SiNodedotjs, SiReact, SiAmazonwebservices, SiDocker, SiPostgresql,
+  SiGit, SiKubernetes, SiTerraform, SiRedis, SiGithubactions,
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 
@@ -15,10 +15,10 @@ const quadrants = [
     desc: "Primary programming languages",
     skills: [
       { name: "Python",     Icon: SiPython,     color: "#3776AB" },
-      { name: "Java",       Icon: FaJava,        color: "#ED8B00" },
+      { name: "Java",       Icon: FaJava,       color: "#ED8B00" },
       { name: "C++",        Icon: SiCplusplus,  color: "#00599C" },
+      { name: "TypeScript", Icon: SiTypescript, color: "#3178C6" },
       { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
-      { name: "Swift",      Icon: SiSwift,      color: "#FA7343" },
     ],
   },
   {
@@ -26,35 +26,36 @@ const quadrants = [
     label: "AI & Machine Learning",
     desc: "Models, frameworks & intelligent systems",
     skills: [
-      { name: "PyTorch",     Icon: SiPytorch,     color: "#EE4C2C" },
-      { name: "Neo4j",       Icon: SiNeo4J,       color: "#008CC1" },
-      { name: "OpenAI",      Icon: SiOpenai,      color: "#74aa9c" },
-      { name: "HuggingFace", Icon: SiHuggingface, color: "#FFD21E" },
-      { name: "FastAPI",     Icon: SiFastapi,     color: "#05998B" },
+      { name: "PyTorch",      Icon: SiPytorch,     color: "#EE4C2C" },
+      { name: "HuggingFace",  Icon: SiHuggingface, color: "#FFD21E" },
+      { name: "Pandas",       Icon: SiPandas,      color: "#150458" },
+      { name: "Scikit-learn", Icon: SiScikitlearn, color: "#F7931E" },
+      { name: "Neo4j",        Icon: SiNeo4J,       color: "#008CC1" },
     ],
   },
   {
     id: "engineering",
     label: "Engineering & Cloud",
-    desc: "Full-stack, cloud & DevOps tooling",
+    desc: "Full-stack, cloud & web frameworks",
     skills: [
       { name: "React",      Icon: SiReact,             color: "#61DAFB" },
+      { name: "FastAPI",    Icon: SiFastapi,            color: "#05998B" },
+      { name: "Node.js",    Icon: SiNodedotjs,         color: "#339933" },
       { name: "AWS",        Icon: SiAmazonwebservices, color: "#FF9900" },
       { name: "Docker",     Icon: SiDocker,            color: "#2496ED" },
       { name: "PostgreSQL", Icon: SiPostgresql,        color: "#4169E1" },
-      { name: "Git",        Icon: SiGit,               color: "#F05032" },
-      { name: "MongoDB",    Icon: SiMongodb,           color: "#47A248" },
     ],
   },
   {
-    id: "security",
-    label: "Security & Ethics",
-    desc: "Risk management, privacy & AI ethics",
+    id: "devops",
+    label: "DevOps & Tools",
+    desc: "Infrastructure, CI/CD & tooling",
     skills: [
-      { name: "Risk Mgmt",       Icon: Shield, color: "#10B981" },
-      { name: "Privacy",         Icon: EyeOff, color: "#A78BFA" },
-      { name: "AI Ethics",       Icon: Scale,  color: "#38BDF8" },
-      { name: "Protection",      Icon: Lock,   color: "#FB923C" },
+      { name: "Kubernetes",   Icon: SiKubernetes,    color: "#326CE5" },
+      { name: "Terraform",    Icon: SiTerraform,     color: "#7B42BC" },
+      { name: "Redis",        Icon: SiRedis,         color: "#DC382D" },
+      { name: "GitHub CI",    Icon: SiGithubactions, color: "#2088FF" },
+      { name: "Git",          Icon: SiGit,           color: "#F05032" },
     ],
   },
 ];

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { SiPython, SiNeo4J, SiReact, SiFastapi, SiAmazonwebservices, SiOpenai, SiLinux} from "react-icons/si";
+import { SiPython, SiNeo4J, SiReact, SiFastapi, SiAmazonwebservices, SiHuggingface, SiLinux} from "react-icons/si";
 import { Shield } from "lucide-react";
 
 const M = ({ children }) => (
@@ -10,40 +10,56 @@ const M = ({ children }) => (
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const jobs = [
   {
-    title: "Software Engineering Intern – Technology Internship Program (TIP)",
-    company: "Fannie Mae",
-    location: "Washington, D.C.",
-    date: "May 2026 – Aug 2026",
-    logo: "fanniemae.png",
+    title: "Machine Learning Engineer, MITRE Project",
+    company: "App Dev Club",
+    location: "College Park, MD",
+    date: "Sep 2026 – Present",
+    logo: "appdev.png",
     incoming: true,
     points: [
-      <>Architected a unified <M>React/FastAPI AI gateway</M> abstracting 5 standalone platforms, scaled division-wide via a strategic corporate mandate</>,
-      <>Orchestrated <M>Claude 4.5 via AWS Bedrock</M> utilizing Pydantic data schemas to secure strict, type-safe JSON contracts across 8 production routes</>,
-      <>Built a cloud-native testing interface using <M>ipywidgets and AWS SageMaker</M> to accelerate pipeline inference verification cycles</>,
+      <>Building <M>classification and extraction</M> models for a MITRE-sponsored document pipeline, served through a <M>FastAPI</M> backend.</>,
+      <>Most of the challenge is in output formatting and edge case handling, since the extracted data feeds into downstream processing that expects consistent structure.</>,
+    ],
+    tech: [
+      { Icon: SiPython,  color: "#3776AB" },
+      { Icon: SiFastapi, color: "#05998B" },
+    ],
+    statusBar: "STACK: PYTHON + FASTAPI | CLIENT: MITRE | ROLE: ML ENGINEER",
+  },
+  {
+    title: "Software Engineering Intern",
+    company: "Fannie Mae",
+    location: "Reston, VA",
+    date: "May 2026 – Aug 2026",
+    logo: "fanniemae.png",
+    badge: "Return Offer",
+    points: [
+      <>Built an AI chatbot and guided intake portal in <M>React</M> and <M>FastAPI</M> on EC2 that routes requests across five internal products, cutting triage time roughly in half.</>,
+      <>Designed the retrieval layer as a <M>RAG</M> knowledge base on <M>S3</M> with event-driven <M>Lambda</M> re-chunking. Most of the time went into chunking strategy and token budgeting, since those directly drove per-request cost.</>,
+      <>Added rules-based failover around <M>Claude Haiku 4.5</M> calls after structured JSON output failed in edge cases, and built <M>SageMaker</M> test harnesses to speed up inference prototyping.</>,
     ],
     tech: [
       { Icon: SiReact,             color: "#61DAFB" },
       { Icon: SiFastapi,           color: "#05998B" },
       { Icon: SiAmazonwebservices, color: "#FF9900" },
     ],
-    statusBar: "METRICS: 8 ACTIVE ROUTES | AI LAYER: CLAUDE 4.5 & SAGEMAKER | INFRA: DIVISION-WIDE",
+    statusBar: "PRODUCTS: 5 ROUTED | TOKENS: −60% | ENGINE: CLAUDE HAIKU 4.5",
   },
   {
-    title: "IT Technician",
+    title: "Automation & Infrastructure Technician",
     company: "UMD – Division of Information Technology",
     location: "College Park, MD",
     date: "Sept 2025 – Present",
     logo: "UMD.jpeg",
     points: [
-      <>Diagnosed kernel, driver, and network issues, supporting <M>40k+ users</M> across campus infrastructure</>,
-      <>Automated OS imaging via WDS and Ninite; cut device setup time by <M>~40%</M></>,
-      <>Configured BIOS and endpoint security settings for <M>200+ computers</M></>,
+      <>Automate OS imaging pipelines across the division using custom <M>PowerShell</M> and <M>Bash</M> scripts, cutting provisioning time by about <M>40%</M>.</>,
+      <>Maintain security across 200+ workstations by scripting driver update cycles to clear vulnerabilities each month.</>,
     ],
     tech: [
       { Icon: SiLinux, color: "#FCC624" },
       { Icon: Shield,  color: "#60A5FA" },
     ],
-    statusBar: "NODES: 40K+ USERS | LEVEL: KERNEL/DRIVERS | UPTIME: 99.9%",
+    statusBar: "WORKSTATIONS: 200+ | VULNS: 50+/MONTH | PROVISION: −40%",
   },
   {
     title: "Software Engineering Intern",
@@ -52,49 +68,32 @@ const jobs = [
     date: "Jun 2025 – Aug 2025",
     logo: "mphasis.png",
     points: [
-      <>Built a <M>Neo4j knowledge graph</M> for <M>30,000+ documents</M>, improving semantic search speed by 20%</>,
-      <>Designed embedding pipelines with a <M>35% reduction</M> in processing overhead and improved consistency</>,
-      <>Integrated GPT + RAG into a Flask–React chat interface supporting 500+ Cypher queries</>,
+      <>Built a <M>Flask</M> microservice that compiled natural language inputs into Cypher queries for a <M>Neo4j</M> knowledge graph, covering the query patterns the data model needed to support.</>,
+      <>Set up async embedding pipelines and tuned vector indexing to get retrieval to sub-second latency across the full document corpus.</>,
+      <>Reworked graph indexing and batch ingestion to cut overall data load time by about <M>35%</M>.</>,
     ],
     tech: [
       { Icon: SiPython, color: "#3776AB" },
       { Icon: SiNeo4J,  color: "#008CC1" },
     ],
-    statusBar: "DATA: 30K+ DOCS | GAIN: +35% EFFICIENCY | ENGINE: NEO4J",
+    statusBar: "DATA: 50K+ RECORDS | GAIN: −35% INGESTION | ENGINE: NEO4J",
   },
   {
-    title: "AI Software Engineer Intern",
+    title: "AI Software Engineering Intern",
     company: "Apollonian.AI",
-    location: "Washington, DC",
+    location: "Washington, D.C.",
     date: "Feb 2025 – Jun 2025",
     logo: "apollonian.png",
     points: [
-      <>Shipped backend for real-time chat platform delivering <M>1,000+ daily messages</M> using React and Firebase</>,
-      <>Integrated OpenAI and HuggingFace APIs for context-aware virtual mental health conversations</>,
-      <>Prototyped SadTalker avatars with emotion mapping and lip-sync at <M>sub-250ms</M> latency</>,
+      <>Built the real-time <M>lip-sync avatar pipeline</M> using <M>HuggingFace</M> models, where the main challenge was keeping inference fast enough for video responses to stay synchronized.</>,
+      <>Wrote async NLP pipelines with <M>dynamic caching</M> to maintain large token contexts across concurrent sessions.</>,
+      <>Got streaming latency down to around <M>250ms</M> through serialization and real-time payload synchronization.</>,
     ],
     tech: [
-      { Icon: SiFastapi, color: "#05998B" },
-      { Icon: SiReact,   color: "#61DAFB" },
+      { Icon: SiHuggingface, color: "#FFD21E" },
+      { Icon: SiFastapi,     color: "#05998B" },
     ],
-    statusBar: "TRAFFIC: 1K+ MSGS/DAY | LATENCY: <250MS | STACK: FASTAPI",
-  },
-  {
-    title: "AI Trainer",
-    company: "Alignerr",
-    location: "Fremont, CA",
-    date: "Feb 2025 – Jun 2025",
-    logo: "alignerr.png",
-    points: [
-      <>Improved LLM accuracy by evaluating and refining AI-generated replies across diverse domains</>,
-      <>Authored red-team scenarios and reasoning examples to strengthen model reliability</>,
-      <>Partnered with ML engineers to optimize data pipelines, reducing model bias by <M>25%</M></>,
-    ],
-    tech: [
-      { Icon: SiPython, color: "#3776AB" },
-      { Icon: SiOpenai, color: "#412991" },
-    ],
-    statusBar: "MODELS: LLMs | ROLE: EVALUATOR | BIAS: −25%",
+    statusBar: "LATENCY: 250MS | CONTEXTS: 16K TOKENS | SESSIONS: 50 CONCURRENT",
   },
 ];
 
@@ -147,6 +146,11 @@ function ExperienceCard({ job, i }) {
                 Current
               </span>
             )}
+            {job.badge && (
+              <span className="text-[9px] font-mono font-bold text-amber-400 bg-amber-500/15 border border-amber-500/25 px-2.5 py-1 rounded-full uppercase tracking-widest">
+                {job.badge}
+              </span>
+            )}
             <span className="text-xs font-mono font-medium text-zinc-400 whitespace-nowrap">
               {job.date}
             </span>
@@ -154,30 +158,24 @@ function ExperienceCard({ job, i }) {
         </div>
 
         {/* Body */}
-        {job.incoming && job.points.length === 0 ? (
-          <p className="text-sm text-blue-400/60 italic">
-            Software Engineering Intern at Fannie Mae, working on intelligent document processing. I'm combining AWS Textract OCR with Amazon Bedrock foundation models to extract and structure data from complex documents, along with the serverless cloud infrastructure (Lambda, S3) that runs it at scale.
-          </p>
-        ) : (
-          <motion.ul
-            className="space-y-2"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-20px" }}
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } } }}
-          >
-            {job.points.map((pt, j) => (
-              <motion.li
-                key={j}
-                variants={{ hidden: { opacity: 0, x: -8 }, visible: { opacity: 1, x: 0, transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] } } }}
-                className="flex items-start gap-3 text-sm text-slate-50 leading-relaxed"
-              >
-                <span className="mt-[7px] w-1 h-1 rounded-full bg-blue-500/60 flex-shrink-0" />
-                {pt}
-              </motion.li>
-            ))}
-          </motion.ul>
-        )}
+        <motion.ul
+          className="space-y-2"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-20px" }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } } }}
+        >
+          {job.points.map((pt, j) => (
+            <motion.li
+              key={j}
+              variants={{ hidden: { opacity: 0, x: -8 }, visible: { opacity: 1, x: 0, transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] } } }}
+              className="flex items-start gap-3 text-sm text-slate-50 leading-relaxed"
+            >
+              <span className="mt-[7px] w-1 h-1 rounded-full bg-blue-500/60 flex-shrink-0" />
+              <span>{pt}</span>
+            </motion.li>
+          ))}
+        </motion.ul>
       </div>
 
       {/* ── Footer Row 1: Tech trace icons ── */}

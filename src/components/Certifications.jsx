@@ -57,16 +57,6 @@ const certs = [
     credentialLink: "https://www.credly.com/badges/3e2fc95c-d63a-412f-b23e-345e0d120d59/public_url",
     gradient: "from-blue-500/70 via-cyan-400/40 to-teal-400/70",
   },
-  {
-    title: "EA Software Engineering Simulation",
-    issuer: "EA | via Forage",
-    date: "January 2025",
-    status: "verified",
-    credentialId: "MkGzM7E3fgrPsBR7b",
-    imageSrc: "/logos/ea.png",
-    credentialLink: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/j43dGscQHtJJ57N54/a77WE3de8qrxWferQ_j43dGscQHtJJ57N54_MkGzM7E3fgrPsBR7b_1737178148243_completion_certificate.pdf",
-    gradient: "from-violet-500/70 via-indigo-400/40 to-blue-500/70",
-  },
 ];
 
 const containerVariants = {

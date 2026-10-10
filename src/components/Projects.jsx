@@ -12,18 +12,18 @@ import fitnessGeniusImage from "../images/fitnessgenius.jpeg";
 const PROJECTS_DATA = [
   {
     title: "Urban Energy Insights",
-    desc: "Event-driven platform for ingesting building telemetry, computing rolling slot baselines, and autonomously flagging demand anomalies via Redis Streams.",
+    desc: "Event-driven platform that ingests building telemetry and flags demand anomalies in under 200ms. Uses idempotent event processing with PostgreSQL nested transactions, which prevents duplicate anomaly records even under concurrent write load.",
     primaryMetric: "<200ms Reaction Time",
-    tech: ["Docker", "Redis Streams", "PostgreSQL"],
+    tech: ["Redis Streams", "PostgreSQL", "SQLAlchemy", "Docker"],
     link: "https://github.com/rudraagarwal01/urban-energy-insights",
     demoPath: "/demos/urban-energy",
     image: urbanenergyImage
   },
   {
     title: "DocFlow",
-    desc: "Simulates AWS Textract and Bedrock to automatically extract, classify, and route enterprise documents into typed data queues for streamlined downstream processing.",
-    primaryMetric: "Auto-Classified",
-    tech: ["AWS Textract", "Bedrock", "pytest"],
+    desc: "Document processing pipeline that automates extraction, classification, and routing for enterprise files. Built around a swappable client layer mirroring the boto3 SDK, so Textract and Bedrock calls can be replaced without changing application code. A pdfplumber and pytesseract fallback handles documents where the primary OCR path produces poor field extraction.",
+    primaryMetric: "88% Classifier Accuracy",
+    tech: ["FastAPI", "React", "AWS Textract", "Bedrock", "GitHub Actions"],
     link: "https://github.com/rudraagarwal01/DocFlow",
     demoPath: "/demos/docflow",
     image: docflowImage
@@ -39,9 +39,9 @@ const PROJECTS_DATA = [
   },
   {
     title: "MealMatch",
-    desc: "Full-stack food recovery platform matching restaurant surplus to recipients and partner organizations. Uses Postgres row-level locking (SELECT FOR UPDATE) to guarantee exactly one claim wins under concurrent load. Recipients browse via a swipeable card interface built with Framer Motion.",
+    desc: "Full-stack food recovery platform that matches surplus restaurant inventory to recipients. Concurrent claim requests created a double-claim problem, addressed with PostgreSQL row-level locking after comparing it against Redis Redlock. Test suites run against a live Postgres instance pre-merge.",
     primaryMetric: "Zero Duplicate Claims",
-    tech: ["FastAPI", "PostgreSQL", "React", "Framer Motion"],
+    tech: ["FastAPI", "PostgreSQL", "React", "JWT/bcrypt", "Leaflet", "PyTest/Vitest"],
     link: "https://github.com/rudraagarwal01/MealMatch",
     demoPath: "/demos/mealmatch",
     image: mealMatchImage

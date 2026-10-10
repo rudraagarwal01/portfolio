@@ -19,7 +19,7 @@ const items = [
     tag: "Founder & Head Training Coach",
     link: "https://acecricket01.wixsite.com/ace-cricket",
     points: [
-      <>Initiated a cricket program engaging <b>50+</b> enthusiasts online and in-person.</>,
+      <>Founded A.C.E. Cricket, UMD's recreational program, training <b>100+</b> participants over <b>4 semesters</b>.</>,
       "Offered comprehensive training and mentorship to foster skill development and teamwork.",
       "Built a community that raised awareness of cricket and promoted the sport at school.",
     ],
